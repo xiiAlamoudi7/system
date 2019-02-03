@@ -431,7 +431,7 @@ Server name: __${guild.name}__
 Server owner: __${guild.owner}__
 Server id: __${guild.id}__ 
 Server Count: __${guild.memberCount}__**`);
-client.channels.get("541693102684110848").sendEmbed(embed)
+client.channels.get("541709658205978645").sendEmbed(embed)
 });
  
 const adminprefix = "-e";
