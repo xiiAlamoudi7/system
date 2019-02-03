@@ -405,37 +405,6 @@ client.on('message', msg => {
   }
 });
 
-			  
-client.on('guildCreate', guild => {
-         const embed = new Discord.RichEmbed()
-     .setColor("RED")
-     .setTitle('Click Here To Add Bot .!')
-     .setURL('https://discordapp.com/oauth2/authorize?client_id=400489866573512705&permissions=8&scope=bot')
-  .setDescription(`**
-  New Server Add Speed Bot ✅
-Server name: __${guild.name}__
-Server owner: __${guild.owner}__
-Server id: __${guild.id}__ 
-Server Count: __${guild.memberCount}__**`);
-client.channels.get("541693102684110848).sendEmbed(embed)
-		    
-});
-
-client.on('guildDelete', guild => {
-         const embed = new Discord.RichEmbed()
-     .setColor("GOLD")
-     .setTitle('Click Here To Add Bot .!')
-     .setURL('https://discordapp.com/api/oauth2/authorize?client_id=539560833097793584&permissions=8&scope=bot')
-  .setDescription(`**
-   Server kicked Speed Bot :cry:
-Server name: __${guild.name}__
-Server owner: __${guild.owner}__
-Server id: __${guild.id}__ 
-Server Count: __${guild.memberCount}__**`);
-client.channels.get("541709658205978645").sendEmbed(embed)
-	
-});
- 
 const adminprefix = "-e";
 const devs = ['349616310734553088','335027415619338240'];
 client.on('message', message => {
