@@ -239,16 +239,6 @@ Rocket.on('message', message => {//av mension
     }
   });
 
-Rocket.on('message', message => {//roles
-    if (message.content === "p!roles") {
-        var roles = message.guild.roles.map(roles => `${roles.name}, `).join(' ')
-        const embed = new Discord.RichEmbed()
-        .setColor('RANDOM')
-        .addField('Roles:',`**[${roles}]**`)
-        message.channel.sendEmbed(embed);
-    }
-});
-
 Rocket.on('message', message => {//help msg
     if (message.author.bot) return;
      if (message.content === prefix + "help") {
