@@ -13,7 +13,6 @@ client.on('message', msg => {
 });
 
 const db = require('quick.db');  
-const hastebin = require('hastebin-gen');  
 const Canvas = require('canvas');        
 const fs = require("fs"); 
 const moment = require("moment");   
