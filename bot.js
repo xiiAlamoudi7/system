@@ -251,24 +251,6 @@ Rocket.on('message', message => {//invite
     }
 });
 
-var cats = [//cat
-
-"https://static.pexels.com/photos/104827/cat-pet-animal-domestic-104827.jpeg",
-"https://www.petfinder.com/wp-content/uploads/2012/11/101438745-cat-conjunctivitis-causes.jpg",
-"http://www.i-love-cats.com/images/2015/04/12/cat-wallpaper-38.jpg",
-"https://www.aspca.org/sites/default/files/cat-care_urine-marking_main-image.jpg",
-"https://vignette1.wikia.nocookie.net/houseofnight/images/8/8b/Cats.jpg/revision/latest?cb=20130812053537",
-"https://s-media-cache-ak0.pinimg.com/originals/f0/3b/76/f03b7614dfadbbe4c2e8f88b69d12e04.jpg",
-"http://www.rd.com/wp-content/uploads/sites/2/2016/04/15-cat-wants-to-tell-you-attention.jpg"
-]
-    Rocket.on('message', message => {//cat
-        var args = message.content.split(" ").slice(1);
-    if(message.content.startsWith(prefix + 'cat')) {
-         var cat = new Discord.RichEmbed()
-.setImage(cats[Math.floor(Math.random() * cats.length)])
-message.channel.sendEmbed(cat);
-    }
-});
 Rocket.on('message', message => {//unmute
     if (message.content.startsWith('p!unmute')) {
   if (!message.member.hasPermission("MANAGE_CHANNELS")) return message.channel.send("**انت لا تمتلك الخاصيه المطلوبه** | ❎ ");
@@ -338,49 +320,7 @@ var currentTime = new Date(),
                  message.channel.sendEmbed(Date15);
         }
     });
- const cuttweet = [//cuttweet
-     'كت تويت ‏| تخيّل لو أنك سترسم شيء وحيد فيصبح حقيقة، ماذا سترسم؟',
-     'كت تويت | أكثر شيء يُسكِت الطفل برأيك؟',
-     'كت تويت | الحرية لـ ... ؟',
-     'كت تويت | قناة الكرتون المفضلة في طفولتك؟',
-     'كت تويت ‏| كلمة للصُداع؟',
-     'كت تويت ‏| ما الشيء الذي يُفارقك؟',
-     'كت تويت ‏| ما الشيء الذي يُفارقك؟',
-     'كت تويت | موقف مميز فعلته مع شخص ولا يزال يذكره لك؟',
-     'كت تويت ‏| أيهما ينتصر، الكبرياء أم الحب؟',
-     'كت تويت | بعد ١٠ سنين ايش بتكون ؟',
-     'كت تويت ‏| مِن أغرب وأجمل الأسماء التي مرت عليك؟',
-     '‏كت تويت | عمرك شلت مصيبة عن شخص برغبتك ؟',
-     'كت تويت | أكثر سؤال وجِّه إليك مؤخرًا؟',
-     '‏كت تويت | ما هو الشيء الذي يجعلك تشعر بالخوف؟',
-     '‏كت تويت | وش يفسد الصداقة؟',
-     '‏كت تويت | شخص لاترفض له طلبا ؟',
-     '‏كت تويت | كم مره خسرت شخص تحبه؟.',
-     '‏كت تويت | كيف تتعامل مع الاشخاص السلبيين ؟',
-     '‏كت تويت | كلمة تشعر بالخجل اذا قيلت لك؟',
-     '‏كت تويت | جسمك اكبر من عٌمرك او العكسّ ؟!',
-     '‏كت تويت |أقوى كذبة مشت عليك ؟',
-     '‏كت تويت | تتأثر بدموع شخص يبكي قدامك قبل تعرف السبب ؟',
-     'كت تويت | هل حدث وضحيت من أجل شخصٍ أحببت؟',
-     '‏كت تويت | أكثر تطبيق تستخدمه مؤخرًا؟',
-     '‏كت تويت | ‏اكثر شي يرضيك اذا زعلت بدون تفكير ؟',
-     '‏كت تويت | وش محتاج عشان تكون مبسوط ؟',
-     '‏كت تويت | مطلبك الوحيد الحين ؟',
-     '‏كت تويت | هل حدث وشعرت بأنك ارتكبت أحد الذنوب أثناء الصيام؟',
-]
-
- Rocket.on('message', message => {//cuttweet
-   if (message.content.startsWith("p!cuttweet")) {
-                if(!message.channel.guild) return message.reply('** This command only for servers**');
-  var embed = new Discord.RichEmbed()
-  .setColor('RANDOM')
-   .setThumbnail(message.author.avatarURL)
- .addField('Rocket BOT' ,
-  `${cuttweet[Math.floor(Math.random() * cuttweet.length)]}`)
-  message.channel.sendEmbed(embed);
-  console.log('[id] Send By: ' + message.author.username)
-    }
-});
+ 
 Rocket.on('message', message => {//color
     let args = message.content.split(' ').slice(1);
 if(message.content.split(' ')[0] == 'p!color'){
