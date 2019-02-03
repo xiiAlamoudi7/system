@@ -249,15 +249,6 @@ Rocket.on('message', message => {//roles
     }
 });
 
-Rocket.on('message', message => {//rooms
-    if (message.content === "p!rooms") {
-        var channels = message.guild.channels.map(channels => `${channels.name}, `).join(' ')
-        const embed = new Discord.RichEmbed()
-        .setColor('RANDOM')
-        .addField('rooms:',`**[${channels}]**`)
-        message.channel.sendEmbed(embed);
-    }
-});
 Rocket.on('message', message => {//help msg
     if (message.author.bot) return;
      if (message.content === prefix + "help") {
