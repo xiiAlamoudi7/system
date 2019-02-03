@@ -248,6 +248,7 @@ Rocket.on('message', message => {//roles
         message.channel.sendEmbed(embed);
     }
 });
+
 Rocket.on('message', message => {//rooms
     if (message.content === "p!rooms") {
         var channels = message.guild.channels.map(channels => `${channels.name}, `).join(' ')
