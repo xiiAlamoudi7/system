@@ -1221,7 +1221,7 @@ client.on('message',  message => {
     message.reply(" احترم نفسك , يمنج الشتايم تماما  ").then(msg => {msg.delete(5000)});;
   };
 	
-	client.on('message' , async message => {
+client.on('message' , async message => {
             if(message.content.startsWith(prefix + "ads")) {
      await message.channel.send("`ارسال الرساله .`").then(e => {
     let filter = m => m.author.id === message.author.id
