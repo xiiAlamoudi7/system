@@ -56,7 +56,7 @@ ${prefix}gstart/للأنشاء جيف اواي شرط لا تمنشن الروم
 
 
 `]
-    let page = 2;
+    let page = 1;
 
     let embed = new Discord.RichEmbed()
     .setColor('RANDOM')
