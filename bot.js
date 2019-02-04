@@ -65,8 +65,8 @@ ${prefix}gstart/للأنشاء جيف اواي شرط لا تمنشن الروم
 
     message.author.sendEmbed(embed).then(msg => {
 
-        msg.react(':arrow_backward: ').then( r => {
-            msg.react(':arrow_forward:)
+        msg.react('?').then( r => {
+            msg.react('?)
 
 
         const backwardsFilter = (reaction, user) => reaction.emoji.name === '?' && user.id === message.author.id;
