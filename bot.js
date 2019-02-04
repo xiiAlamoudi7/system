@@ -24,11 +24,9 @@ ${prefix}id/معلومات عنك?
 ${prefix}avatar/صورتك او صورة الي تمنشنو
 ${prefix}embed/يكرر الي تقولو بشكل حلو
 ${prefix}support/سيرفر الدعم
-**
-  `
-,`
+
         ***__Administrative Orders__***
-**
+
 ${prefix}move @user /  لسحب الشخص الى روومك
 ${prefix}bc / رسالة جماعية الى كل اعضاء السيرفر
 ${prefix}role @user <rank> / لأعطاء رتبة لعضو معين
@@ -52,6 +50,7 @@ ${prefix}infomedia/معلومات عن روم الي انت أنشأتها
 ${prefix}gstart/للأنشاء جيف اواي شرط لا تمنشن الروم اكتب اسمها فقط
 
 **
+  `
 
 `]
     let page = 1;
