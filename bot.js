@@ -881,7 +881,6 @@ client.on("guildMemberAdd", member => {
 
 const config = require('./config.json');
 const fs = require("fs");
-let db = JSON.parse(fs.readFileSync("./database.json", "utf8"));
 
 client.on("message", message => {
     if (message.author.bot) return; 
