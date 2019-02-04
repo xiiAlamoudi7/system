@@ -1205,21 +1205,5 @@ client.on('guildMemberAdd', member => {
   channel.send(`Welcome to the server, ${member}`);
 });
 
-const bannedwords = [
-    "احا",
-    "كسمك",
-    "يبن المتناكه",
-    "زبرك",
-    "كسك",
-    "شرموط"
-
-  ];
-
-client.on('message',  message => {
-  if(bannedwords.some(word => message.content.includes(word))) {
-    message.delete()
-    message.reply(" احترم نفسك , يمنج الشتايم تماما  ").then(msg => {msg.delete(5000)});;
-  };
-
 // THIS  MUST  BE  THIS  WAY
 client.login(process.env.BOT_TOKEN);
