@@ -828,6 +828,7 @@ client.on('message', message => {
 });
 
 const welcome = JSON.parse(fs.readFileSync('./welcomer.json' , 'utf8'));
+const fs = require("fs");
 client.on('message', async message => {
     let messageArray = message.content.split(" ");
    if(message.content.startsWith(prefix + "setLeave")) {
