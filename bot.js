@@ -1011,8 +1011,6 @@ if(message.content.startsWith(prefix + "daily")) {
 } else {
     message.channel.send(`**:stopwatch: | ${message.author.username}, your daily :yen: credits refreshes ${moment().endOf('day').fromNow()}**`)
 }
-  }
-};
-	  
+  }	  
 // THIS  MUST  BE  THIS  WAY
 client.login(process.env.BOT_TOKEN);
