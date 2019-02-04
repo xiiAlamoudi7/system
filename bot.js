@@ -830,36 +830,47 @@ hours = 12;
     });
   }
 });
-	
-client.on("message", (message) => {
-  let men = message.mentions.users.first()
- 
-  if (message.author.bot) return;
-    if (message.author.id === client.user.id) return;
-    if(!message.channel.guild) return;
-if (message.content.startsWith(prefix + 'credit')) {
-  if(men) {
-    if (!profile[men.id]) profile[men.id] = {
-    lastDaily:'Not Collected',
-    credits: 1,
-  };
-  }
-  if(men) {
-message.channel.send(`** ${men.username}, :credit_card: balance` + " is `" + `${profile[men.id].credits}$` + "`.**")
-} else {
-  message.channel.send(`** ${message.author.username}, your :credit_card: balance` + " is `" + `${profile[message.author.id].credits}$` + "`.**")
+
+const db = require('quick.db')
+client.on('message', async message => {
+   if(message.content.startsWith(prefix + "credit")) {
+ let args = message.content.split(' ').slice(1);
+
+var user = message.mentions.users.first() || message.author;
+        
+        var balance = await db.fetch(`userBalance ${user.id}`)
+        
+        if (balance === null) balance = 50;
+        message.channel.send(`**${user.username} your :credit_card:  balance :  \`${balance}\`**`)
 }
+});
+
+client.on('message', async message => {
+   if(message.content.startsWith(prefix + "daily")) {
+    let cooldown = 8.64e+7,
+    amount = 250
+
+    let lastDaily = await db.fetch(`lastDaily_${message.author.id}`)
+    try {
+    db.fetch(`userBalance_${message.member.id}`).then(bucks => {
+    if(bucks == null){
+        db.set(`userBalance_${message.member.id}`, 100000000000)}
+
+    else if (lastDaily !== null && cooldown - (Date.now() - lastDaily) > 0) {
+        let timeObj = ms(cooldown - (Date.now() - lastDaily))
+
+        message.channel.send(`You sucessfully collected this, you must wait to collect next dily. Time Left: **${timeObj}**!`)
+    } else {
+        db.set(`lastDaily_${message.author.id}`, Date.now());
+        db.add(`userBalance_${message.member.id}`, amount).then(i => {
+          message.channel.send(`**:atm:  | You received your  :yen: ${amount} daily credits!**`)
+
+
+        })}
+    })} catch(err) {console.log(err)}
 }
- 
-if(message.content.startsWith(prefix + "daily")) {
-  if(profile[message.author.id].lastDaily != moment().format('day')) {
-    profile[message.author.id].lastDaily = moment().format('day')
-    profile[message.author.id].credits += 200
-     message.channel.send(`**${message.author.username} you collect your \`200\` :dollar: daily pounds**`)
-} else {
-    message.channel.send(`**:stopwatch: | ${message.author.username}, your daily :yen: credits refreshes ${moment().endOf('day').fromNow()}**`)
-}
-  }
+});
+
 	
 // THIS  MUST  BE  THIS  WAY
 client.login(process.env.BOT_TOKEN);
