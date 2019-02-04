@@ -1173,22 +1173,5 @@ EpicEdiTeD[message.author.id].Xp+= 0.25;
 EpicEdiTeD[message.author.id].Money+= 0.25;
  
 });
-
-client.on('message', message => {
-              if (!message.channel.guild) return;
-      if(message.content =='G.count')
-	 
-      message.reply(`**${message.guild.memberCount}**`);
-    });
-    client.on('message', message => {
-   if(message.content.startsWith(prefix + "invites")) {
-    message.guild.fetchInvites().then(invs => {
-      let user = message.mentions.users.first() || message.author
-      let personalInvites = invs.filter(i => i.inviter.id === user.id);
-      let inviteCount = personalInvites.reduce((p, v) => v.uses + p, 0);
-message.channel.send(`${user} has ${inviteCount} invites.`);
-});
-  }
-});
 // THIS  MUST  BE  THIS  WAY
 client.login(process.env.BOT_TOKEN);
