@@ -879,8 +879,6 @@ client.on("guildMemberAdd", member => {
 }).catch(console.error)
 })
 
-const Discord = require('discord.js');
-const client = new Discord.Client();
 const config = require('./config.json');
 const fs = require("fs");
 let db = JSON.parse(fs.readFileSync("./database.json", "utf8"));
