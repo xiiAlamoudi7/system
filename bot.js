@@ -18,7 +18,6 @@ ${prefix}bot/يعرض لك كل معلومات البوت
 ${prefix}count/يعرض لك عدد الاشخاص بالسيرفر بدون بوتات
 ${prefix}invite/ لدعوة البوت في سيرفرك 
 ${prefix}rooms/يعرض لك كل الرومات الي بالسيرفر مع عددها
-${prefix}emojilist/يعرض لك كل الايموجيات الي بالسيرفر
 ${prefix}say/يكرر الكلام الي تكتبو?
 ${prefix}id/معلومات عنك?
 ${prefix}avatar/صورتك او صورة الي تمنشنو
@@ -27,7 +26,7 @@ ${prefix}support/سيرفر الدعم
 
 **
 `
-,`
+`
         ***__Administrative Orders__***
 **
 ${prefix}move @user /  لسحب الشخص الى روومك
@@ -50,13 +49,14 @@ ${prefix}setleave/لأنشاء روم مغادر العضوا
 ${prefix}setmedia/لأنشاء رووم مخصص لصور و الخ
 ${prefix}togglemedia/لتشغيل الروم و اطقائها
 ${prefix}infomedia/معلومات عن روم الي انت أنشأتها
+${prefix}ads/للأنشاء اعلان
 ${prefix}gstart/للأنشاء جيف اواي شرط لا تمنشن الروم اكتب اسمها فقط
 
 **
 
 
 `]
-    let page = 1;
+    let page = 2;
 
     let embed = new Discord.RichEmbed()
     .setColor('RANDOM')
@@ -685,7 +685,7 @@ client.on('message', message => {
      let embed = new Discord.RichEmbed()
   .setAuthor(message.author.username)
   .setColor("#9B59B6")
-  .addField(" ** :gear: Server Support :gear: **" , "  https://discord.gg/7dc8edG**")
+  .addField(" ** :gear: Server Support :gear: **" , "  https://discord.gg/RdgKYVC")
      
      
   message.channel.sendEmbed(embed);
@@ -1205,5 +1205,63 @@ client.on('guildMemberAdd', member => {
   channel.send(`Welcome to the server, ${member}`);
 });
 
+const bannedwords = [
+    "احا",
+    "كسمك",
+    "يبن المتناكه",
+    "زبرك",
+    "كسك",
+    "شرموط"
+
+  ];
+
+client.on('message',  message => {
+  if(bannedwords.some(word => message.content.includes(word))) {
+    message.delete()
+    message.reply(" احترم نفسك , يمنج الشتايم تماما  ").then(msg => {msg.delete(5000)});;
+  };
+	
+	client.on('message' , async message => {
+            if(message.content.startsWith(prefix + "ads")) {
+     await message.channel.send("`ارسال الرساله .`").then(e => {
+    let filter = m => m.author.id === message.author.id
+    let tests = '';
+    let time = '';
+    let channel = '';
+    let chaTests = message.channel.awaitMessages(filter, { max: 1, time: 30000, errors: ['time'] })
+    .then(collected => {
+      tests = collected.first().content
+      collected.first().delete()
+e.edit("`تكرار الرساله كل ....... دقائق`")
+let chaTime = message.channel.awaitMessages(filter, { max: 1, time: 30000, errors: ['time'] })
+.then(co => {
+if(isNaN(co.first().content)) return message.reply("`الوقت بالدقائق ! ارقام فقطٍ`");
+if(co.first().content > 1500 || co.first().content < 1) return message.channel.send("`لا اقل من دقيقه ولا اكثر من يوم`")
+  time = co.first().content
+co.first().delete()
+  e.edit("`ادخل اسم الروم`")
+  let chaChannel = message.channel.awaitMessages(filter, { max: 1, time: 30000, errors: ['time'] })
+.then(col => {
+  channel = col.first().content
+col.first().delete()
+  e.edit("`جاري اعداد المعلومات الرجاء الانتظاار...`").then(b => {
+              setTimeout(() => {
+    b.edit(`** تم اعداد المعلومات بنجاح .**`)
+        },2000);
+  })
+  var room = message.guild.channels.find('name' , channel)
+  if(!room) return;
+  if (room) {
+setInterval(() => {
+room.send(tests);
+}, time*60000)
+  }
+})
+})
+})
+        
+})
+}
+});
 // THIS  MUST  BE  THIS  WAY
 client.login(process.env.BOT_TOKEN);
