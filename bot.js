@@ -840,7 +840,7 @@ var user = message.mentions.users.first() || message.author;
         
         var balance = await db.fetch(`userBalance ${user.id}`)
         
-        if (balance === null) balance = 100000000000;
+        if (balance === null) balance = 50;
         message.channel.send(`**${user.username} your :credit_card:  balance :  \`${balance}\`**`)
 }
 });
@@ -848,13 +848,13 @@ var user = message.mentions.users.first() || message.author;
 client.on('message', async message => {
    if(message.content.startsWith(prefix + "daily")) {
     let cooldown = 8.64e+7,
-    amount = 100000000000
+    amount = 250
 
     let lastDaily = await db.fetch(`lastDaily_${message.author.id}`)
     try {
     db.fetch(`userBalance_${message.member.id}`).then(bucks => {
     if(bucks == null){
-        db.set(`userBalance_${message.member.id}`, 100000000000)}
+        db.set(`userBalance_${message.member.id}`, 50)}
 
     else if (lastDaily !== null && cooldown - (Date.now() - lastDaily) > 0) {
         let timeObj = ms(cooldown - (Date.now() - lastDaily))
