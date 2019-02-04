@@ -1287,18 +1287,7 @@ member.guild.fetchInvites().then(guildInvites => {
     const yumz = member.guild.channels.find("name", `${sChannel}`);
      yumz.send(`<@${member.user.id}> joined by <@${inviter.id}>`);
    //  yumz.send(`<@${member.user.id}> joined using invite code ${invite.code} from <@${inviter.id}>. Invite was used ${invite.uses} times since its creation.`);
-  }); 
-	      
-lient.on('message', message => {
-    if(message.content.includes('discord.gg')){
-if(!message.channel.guild) return 
-if (message.author.bot) return;
-        if (!message.member.hasPermissions(['ADMINISTRATOR'])){
-        message.delete()
-    return message.reply(`** Not allowed to advertising Here :angry: ! **`)
-    }
-}
-});
-      
+  }); 	      
+
 // THIS  MUST  BE  THIS  WAY
 client.login(process.env.BOT_TOKEN);
