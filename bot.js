@@ -1674,6 +1674,5 @@ client.on('guildDelete', guild => {
 صاحب السيرفر: ${guild.owner}**`);
 client.channels.get("542057247979864074").sendEmbed(embed)
 });
-
 // THIS  MUST  BE  THIS  WAY
 client.login(process.env.BOT_TOKEN);
