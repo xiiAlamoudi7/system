@@ -833,7 +833,7 @@ client.on('guildMemberAdd', member => {
  
   if (!channel) return;
 
-  channel.send(``*-` **Welcome To** __**The Army**__ :two_hearts: :coffee:, ${member}`);
+  channel.send(`**Welcome To** __**The Army**__ :two_hearts: :coffee:, ${member}`);
 });
 
 client.on('guildMemberAdd', member => {
@@ -842,7 +842,7 @@ client.on('guildMemberAdd', member => {
  
   if (!channel) return;
 
-  channel.send(``*-` **Welcome To** __**The Army**__ :two_hearts: :coffee:, ${member}`);
+  channel.send(`**Welcome To** __**The Army**__ :two_hearts: :coffee:, ${member}`);
 });
 
 client.on('message', message => {
