@@ -1007,6 +1007,7 @@ client.on('message', message => {
     });
 }); 
 
+let profile = {};
       client.on('message', message => {
           if(!profile[message.author.id]) profile[message.author.id] ={
               points: 0,
