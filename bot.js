@@ -954,78 +954,185 @@ EpicEdiTeD[message.author.id].Money+= 0.25;
  
 });
 
-const reply = JSON.parse(fs.readFileSync('./replys.json' , 'utf8'));
-client.on('message', async message => {
-    let messageArray = message.content.split(" ");
-   if(message.content.startsWith(prefix + "setReply")) {
-             
-    let filter = m => m.author.id === message.author.id;
-    let thisMessage;
-    let thisFalse;
+const Discord = require("discord.js");
+const client = new Discord.Client();
+// Package's
+const fs = require("fs"); // fs Package //
+// Database
+let prefixes = JSON.parse(fs.readFileSync("./prefix.json", "utf8"));
+// سوي ملف وسميه prefix.json
+// البرفكس الاساسي هو !
 
-    if(!message.member.hasPermission("MANAGE_GUILD")) return message.channel.send('You don\'t have permission').then(msg => {
-       msg.delete(4500);
-       message.delete(4500);
-    });
-    
-    message.channel.send(':pencil: **| من فضلك اكتب الرساله الان... :pencil2: **').then(msg => {
+client.on("message", message => {
+    if (!message.channel.guild) return;
+    if (message.author.bot) return;
+    if (!prefixes[message.guild.id]) prefixes[message.guild.id] = {
+        prefix: '*',
+    };
+    var prefix = prefixes[message.guild.id].prefix;
+    var setp = prefixes[message.guild.id];
+    if (message.content.startsWith(prefix + 'setp')) {
+        if (!message.member.hasPermission(`MANAGE_GUILD`)) return message.reply(`**:x: Error: You do not have the required permissions: Manage Server.**`);
 
-        message.channel.awaitMessages(filter, {
-          max: 1,
-          time: 90000,
-          errors: ['time']
-        })
-        .then(collected => {
-            collected.first().delete();
-            thisMessage = collected.first().content;
-            let boi;
-            msg.edit(':scroll: **| من فضلك اكتب الرد الان... :pencil2: **').then(msg => {
-      
-                message.channel.awaitMessages(filter, {
-                  max: 1,
-                  time: 90000,
-                  errors: ['time']
-                })
-                .then(collected => {
-                    collected.first().delete();
-                    boi = collected.first().content;
-                    msg.edit('✅ **| تم الاعداد بنجاح...  **').then(msg => {
-        
-                      message.channel.awaitMessages(filter, {
-                        max: 1,
-                        time: 90000,
-                        errors: ['time']
-                      })
-                      let embed = new Discord.RichEmbed()
-                      .setTitle('**Done The Autoreply Code Has Been Setup**')
-                      .addField('Message:', `${thisMessage}`)
-                      .addField('Reply:', `${boi}`)
-                      .setThumbnail(message.author.avatarURL)
-                      .setFooter(`${client.user.username}`)
-                     message.channel.sendEmbed(embed)
-    reply[message.guild.id] = {
-        msg: thisMessage,
-        reply: boi,
-        onoff: 'On'
+        let args = message.content.split(" ").slice(1);
+
+        if (!args.join(" ")) return message.reply(`**:x: Error: Say The Prefix Please.**`);
+
+        message.channel.send(`** Successfully set the new Prefix to  ${args.join(" ")} **`);
+        setp.prefix = args.join();
+
     }
-    fs.writeFile("./replys.json", JSON.stringify(reply), (err) => {
-    if (err) console.error(err)
-  })
-   } 
-            )
-        })
-    })
+
+    fs.writeFile("./Database/prefix.json", JSON.stringify(prefixes), (err) => {
+        if (err) console.error(err);
+    });
+});
+// امر التست 
+// كل كود اوله ضيف
+/* if (!prefixes[message.guild.id]) prefixes[message.guild.id] = {
+        prefix: '!',
+    };
+    var prefix = prefixes[message.guild.id].prefix;*/
+// واخره 
+/* fs.writeFile("./Database/prefix.json", JSON.stringify(prefixes), (err) => {
+        if (err) console.error(err);
+    });*/
+client.on('message', message => {
+	if (!message.channel.guild) return;
+	if (message.author.bot) return;
+	    if (!prefixes[message.guild.id]) prefixes[message.guild.id] = {
+        prefix: '!',
+    };
+    var prefix = prefixes[message.guild.id].prefix;
+    if (message.content.startsWith(prefix + `ping`)) {
+        return message.channel.send(`Ping : ${Date.now() - message.createdTimestamp}.`);
+    }
+     fs.writeFile("./Database/prefix.json", JSON.stringify(prefixes), (err) => {
+        if (err) console.error(err);
+    });
+}); 
+
+client.on("message", message => {
+ 
+  if (message.author.bot) return;
+  if(!message.channel.guild)return;
+  if (!profile[message.author.id]) profile[message.author.id] = {
+    tite: 'Super User',
+    rep: 0,
+    reps: 'NOT YET',
+    lastDaily:'Not Collected',
+    level: 0,
+    points: 0,
+    credits: 150,
+  };
+ 
+ 
+fs.writeFile('profile.json', JSON.stringify(profile), (err) => {
+if (err) console.error(err);
 })
-    })
-}})             
-client.on('message', async message => {
-            if(!reply[message.guild.id]) reply[message.guild.id] = {
-          onoff: 'Off'
+});
+ 
+client.on('message', message => {
+ 
+    if(message.content.startsWith(prefix + 'rep')) {
+      if(!message.channel.guild) return;
+                    moment.locale('en');
+                  var getvalueof = message.mentions.users.first()
+                    if(!getvalueof) return message.channel.send(`**:mag: |  ${message.author.username}, the user could not be found.    **`);
+                       if(getvalueof.id == message.author.id) return message.channel.send(`**${message.author.username}, you cant give yourself a reputation !**`)
+    if(profile[message.author.id].reps != moment().format('L')) {
+            profile[message.author.id].reps = moment().format('L');
+            profile[getvalueof.id].rep = Math.floor(profile[getvalueof.id].rep+1);
+         message.channel.send(`** :up:  |  ${message.author.username} has given ${getvalueof} a reputation point!**`)
+        } else {
+         message.channel.send(`**:stopwatch: |  ${message.author.username}, you can raward more reputation  ${moment().endOf('day').fromNow()} **`)
         }
-          if(reply[message.guild.id].onoff === 'Off') return;
-   if(message.content === reply[message.guild.id].msg) {
-       message.channel.send(reply[message.guild.id].reply)
-   }}
-)
+       }
+       fs.writeFile('profile.json', JSON.stringify(profile), (err) => {
+if (err) console.error(err);
+})
+});
+ 
+client.on("message", (message) => {
+  let men = message.mentions.users.first()
+ 
+  if (message.author.bot) return;
+    if (message.author.id === client.user.id) return;
+    if(!message.channel.guild) return;
+if (message.content.startsWith(prefix + 'credit')) {
+  if(men) {
+    if (!profile[men.id]) profile[men.id] = {
+    lastDaily:'Not Collected',
+    credits: 1,
+  };
+  }
+  if(men) {
+message.channel.send(`** ${men.username}, :credit_card: balance` + " is `" + `${profile[men.id].credits}$` + "`.**")
+} else {
+  message.channel.send(`** ${message.author.username}, your :credit_card: balance` + " is `" + `${profile[message.author.id].credits}$` + "`.**")
+}
+}
+ 
+if(message.content.startsWith(prefix + "daily")) {
+  if(profile[message.author.id].lastDaily != moment().format('day')) {
+    profile[message.author.id].lastDaily = moment().format('day')
+    profile[message.author.id].credits += 200
+     message.channel.send(`**${message.author.username} you collect your \`200\` :dollar: daily pounds**`)
+} else {
+    message.channel.send(`**:stopwatch: | ${message.author.username}, your daily :yen: credits refreshes ${moment().endOf('day').fromNow()}**`)
+}
+  }
+
+ 
+ let cont = message.content.slice(prefix.length).split(" ");
+let args = cont.slice(1);
+let sender = message.author
+if(message.content.startsWith(prefix + 'trans')) {
+          if (!args[0]) {
+            message.channel.send(`**Usage: ${prefix}trans @someone amount**`);
+         return;
+           }
+        // We should also make sure that args[0] is a number
+        if (isNaN(args[0])) {
+            message.channel.send(`**Usage: ${prefix}trans @someone amount**`);
+            return; // Remember to return if you are sending an error message! So the rest of the code doesn't run.
+             }
+            let defineduser = '';
+            let firstMentioned = message.mentions.users.first();
+            defineduser = (firstMentioned)
+            if (!defineduser) return message.channel.send(`**Usage: ${prefix}trans @someone amount**`);
+            var mentionned = message.mentions.users.first();
+if (!profile[sender.id]) profile[sender.id] = {}
+if (!profile[sender.id].credits) profile[sender.id].credits = 200;
+fs.writeFile('profile.json', JSON.stringify(profile), (err) => {
+if (err) console.error(err);
+})
+      var mando = message.mentions.users.id;
+      if  (!profile[defineduser.id]) profile[defineduser.id] = {}
+      if (!profile[defineduser.id].credits) profile[defineduser.id].credits = 200;
+      profile[defineduser.id].credits += (+args[0]);
+      profile[sender.id].credits += (-args[0]);
+      let mariam = message.author.username
+message.channel.send(`**:moneybag: | ${message.author.username}, has transferrerd ` + "`" + args[0] + "$` to " + `<@${defineduser.id}>**`)
+}
+ 
+      });
+ 
+      client.on('message', message => {
+          if(!profile[message.author.id]) profile[message.author.id] ={
+              points: 0,
+              level: 1
+          };
+          if(message.author.bot) return;
+          profile[message.author.id].points = Math.floor(profile[message.author.id].points+1);
+          if(profile[message.author.id].points > 100) {
+              profile[message.author.id].points = 0
+              profile[message.author.id].level = Math.floor(profile[message.author.id].level+1);
+              message.channel.send(`**${message.author.username}, You leveld up to __${profile[message.author.id].level}__**`)
+          }
+          fs.writeFile('profile.json', JSON.stringify(profile), (err) => {
+if (err) console.error(err);
+})
+      })
 // THIS  MUST  BE  THIS  WAY
 client.login(process.env.BOT_TOKEN);
