@@ -954,7 +954,6 @@ EpicEdiTeD[message.author.id].Money+= 0.25;
  
 });
 
-const Discord = require("discord.js");
 const client = new Discord.Client();
 // Package's
 const fs = require("fs"); // fs Package //
