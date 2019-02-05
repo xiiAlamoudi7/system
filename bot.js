@@ -954,10 +954,6 @@ EpicEdiTeD[message.author.id].Money+= 0.25;
  
 });
 
-const client = new Discord.Client();
-// Package's
-const fs = require("fs"); // fs Package //
-// Database
 let prefixes = JSON.parse(fs.readFileSync("./prefix.json", "utf8"));
 // سوي ملف وسميه prefix.json
 // البرفكس الاساسي هو !
@@ -1133,5 +1129,38 @@ message.channel.send(`**:moneybag: | ${message.author.username}, has transferrer
 if (err) console.error(err);
 })
       })
+
+client.on('message', message => {
+  let args = message.content.split(" ")
+  if (args[0].toLowerCase().startsWith(prefix+'roles')) {
+    let str = "";
+    var role = message.guild.roles.forEach(role => {
+      str +=" "+role.name+'\n'
+    })
+    message.channel.send(`\`\`\`${str}\`\`\``)
+  }
+})
+
+client.on('guildMemberAdd', member => {
+
+    const channel = member.guild.channels.find('name', 'army');
+  
+    const millis = new Date().getTime() - member.user.createdAt.getTime();
+    const now = new Date();
+    const createdAt = millis / 1000 / 60 / 60 / 24;
+
+
+
+
+  
+    const embed = new Discord.RichEmbed()
+    
+    .setColor("black")
+    .setDescription(`**تاريخ دخولك للدسكورد منذ ${createdAt.toFixed(0)} يوم**`)
+    .setAuthor(member.user.tag, member.user.avatarURL);
+    channel.sendEmbed(embed);
+
+  
+});
 // THIS  MUST  BE  THIS  WAY
 client.login(process.env.BOT_TOKEN);
