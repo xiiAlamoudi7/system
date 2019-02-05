@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const fs = require("fs");
 const client = new Discord.Client();
 let prefix = "*"
 
@@ -955,7 +956,6 @@ EpicEdiTeD[message.author.id].Money+= 0.25;
 
 const reply = JSON.parse(fs.readFileSync('./replys.json' , 'utf8'));
 client.on('message', async message => {
-const fs = require("fs");
     let messageArray = message.content.split(" ");
    if(message.content.startsWith(prefix + "setReply")) {
              
