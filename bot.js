@@ -910,44 +910,6 @@ EpicEdiTeD[message.author.id].Money+= 0.25;
  
 });
 
-let prefixes = JSON.parse(fs.readFileSync("./prefix.json", "utf8"));
-// سوي ملف وسميه prefix.json
-// البرفكس الاساسي هو !
-
-client.on("message", message => {
-    if (!message.channel.guild) return;
-    if (message.author.bot) return;
-    if (!prefixes[message.guild.id]) prefixes[message.guild.id] = {
-        prefix: '*',
-    };
-    var prefix = prefixes[message.guild.id].prefix;
-    var setp = prefixes[message.guild.id];
-    if (message.content.startsWith(prefix + 'setp')) {
-        if (!message.member.hasPermission(`MANAGE_GUILD`)) return message.reply(`**:x: Error: You do not have the required permissions: Manage Server.**`);
-
-        let args = message.content.split(" ").slice(1);
-
-        if (!args.join(" ")) return message.reply(`**:x: Error: Say The Prefix Please.**`);
-
-        message.channel.send(`** Successfully set the new Prefix to  ${args.join(" ")} **`);
-        setp.prefix = args.join();
-
-    }
-
-    fs.writeFile("./Database/prefix.json", JSON.stringify(prefixes), (err) => {
-        if (err) console.error(err);
-    });
-});
-// امر التست 
-// كل كود اوله ضيف
-/* if (!prefixes[message.guild.id]) prefixes[message.guild.id] = {
-        prefix: '!',
-    };
-    var prefix = prefixes[message.guild.id].prefix;*/
-// واخره 
-/* fs.writeFile("./Database/prefix.json", JSON.stringify(prefixes), (err) => {
-        if (err) console.error(err);
-    });*/
 client.on('message', message => {
 	if (!message.channel.guild) return;
 	if (message.author.bot) return;
@@ -1012,6 +974,103 @@ client.on('guildMemberAdd', member => {
     channel.sendEmbed(embed);
 
   
+});
+
+client.on('guildMemberAdd', member=> {
+    member.addRole(member.guild.roles.find("name","The Army"));
+    });
+
+const { Client } = require('discord.js');
+const prefix = "*";
+const client = new Client();
+
+client.on('ready', () => {
+    console.log('ready');
+});
+
+client.on('message', message => {
+    let args = message.content.split(' ').slice(1);
+
+    if(message.content.startsWith(prefix + 'dm')) {
+        let mnt = message.mentions.users.first();
+        if(!mnt) return message.reply('Please mention someone!');
+        mnt.send(args.join(' ').replace(mnt, '')).then(() => {
+            message.channel.send('Successfully sent the message!');
+        }).catch(() => {
+            message.channel.send('The user have dms disabled');
+        });
+    };
+})
+
+client.on("message", async message => {
+            if(!message.channel.guild) return;
+            var prefix = "-";
+        if(message.content.startsWith(prefix + 'invites')) {
+        var nul = 0
+        var guild = message.guild
+        await guild.fetchInvites()
+            .then(invites => {
+             invites.forEach(invite => {
+                if (invite.inviter === message.author) {
+                     nul+=invite.uses
+                    }
+                });
+            });
+          if (nul > 0) {
+              console.log(`\n${message.author.tag} has ${nul} invites in ${guild.name}\n`)
+              var embed = new Discord.RichEmbed()
+                  .setColor("#000000")
+                    .addField(`${message.author.username}`, `لقد قمت بدعوة **${nul}** شخص`)
+                          message.channel.send({ embed: embed });
+                      return;
+                    } else {
+                       var embed = new Discord.RichEmbed()
+                        .setColor("#000000")
+                        .addField(`${message.author.username}`, `لم تقم بدعوة أي شخص لهذة السيرفر`)
+
+                       message.channel.send({ embed: embed });
+                        return;
+                    }
+        }
+        if(message.content.startsWith(prefix + 'inviteCodes')) {
+let guild = message.guild
+var codes = [""]
+message.channel.send(":postbox: **لقد قمت بأرسال جميع روابط الدعوات التي قمت بأنشائها في الخاص**")
+guild.fetchInvites()
+.then(invites => {
+invites.forEach(invite => {
+if (invite.inviter === message.author) {
+codes.push(`discord.gg/${invite.code}`)
+}
+})
+}).then(m => {
+if (codes.length < 0) {
+    var embed = new Discord.RichEmbed()
+.setColor("#000000")
+.addField(`Your invite codes in ${message.guild.name}`, `You currently don't have any active invites! Please create an invite and start inviting, then you will be able to see your codes here!`)
+message.author.send({ embed: embed });
+return;
+} else {
+    var embed = new Discord.RichEmbed()
+.setColor("#000000")
+.addField(`Your invite codes in ${message.guild.name}`, `Invite Codes:\n${codes.join("\n")}`)
+message.author.send({ embed: embed });
+return;
+}
+})
+}
+
+});
+
+client.on('message', message => {
+       if (message.content.startsWith(prefix + 'botserver')) {
+     let msg =  client.guilds.map(guild => `**${guild.name}** عدد الاعضاء: ${guild.memberCount}`).join('\n');
+  let embed = new Discord.RichEmbed()
+  .setTitle(`${client.guilds.size}سيرفرات `)
+  .setDescription(`${msg}`)
+  .setColor("#ebf442");
+  message.channel.send(embed);
+}
 });
 // THIS  MUST  BE  THIS  WAY
 client.login(process.env.BOT_TOKEN);
