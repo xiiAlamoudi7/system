@@ -16,7 +16,7 @@ client.on('message', msg => {
 });
 
  client.on('message' , message => {
-  var prefix = "-";
+  var prefix = "*";
   if(message.author.bot) return;
   if(message.content.startsWith(prefix + "ping")) {
  message.channel.send('Pong...').then((msg) => {
@@ -26,7 +26,7 @@ client.on('message', msg => {
  });
  
 client.on('message', msg => {
-	var prefix = "-";
+	var prefix = "*";
   if (msg.author.bot) return;
   if (!msg.content.startsWith(prefix)) return;
   let command = msg.content.split(" ")[0];
@@ -72,7 +72,7 @@ client.user.setAvatar(argresult);
 
 
 client.on('message', ra3d => {
-var prefix = "-";
+var prefix = "*";
                         let args = ra3d.content.split(" ").slice(1).join(" ")
 if(ra3d.content.startsWith(prefix + 'ccolors')) {
     if(!args) return ra3d.channel.send('`How Many Colors??`');
@@ -89,7 +89,7 @@ if(ra3d.content.startsWith(prefix + 'ccolors')) {
        });
 
 client.on('message', message => {
-    if (message.content.startsWith("-bot")) {
+    if (message.content.startsWith("*bot")) {
     message.channel.send({
         embed: new Discord.RichEmbed()
             .setAuthor(client.user.username,client.user.avatarURL)
@@ -111,7 +111,7 @@ client.on('message', message => {
 });
 
 client.on('message',async Epic => {
-  var prefix = "-" ;
+  var prefix = "*" ;
   if(Epic.content.startsWith(prefix + "vonline")) {
   if(!Epic.guild.member(Epic.author).hasPermissions('MANAGE_CHANNELS')) return Epic.reply(':x: **I Dont Have Permissions**');
   if(!Epic.guild.member(client.user).hasPermissions(['MANAGE_CHANNELS','MANAGE_ROLES_OR_PERMISSIONS'])) return Epic.reply(':x: **You Dont Have Permissions**');
@@ -129,7 +129,7 @@ client.on('message',async Epic => {
 });
 
 client.on('message', message => {
-	var prefix = "-";
+	var prefix = "*";
 if(!message.channel.guild) return;
 if(message.content.startsWith(prefix + 'move')) {
  if (message.member.hasPermission("MOVE_MEMBERS")) {
@@ -172,52 +172,8 @@ message.react("❌")
       message.channel.send(IzRo);
     });
 
- client.on('message', message => {
-	    var prefix = "-";
-              if(!message.channel.guild) return;
-    if(message.content.startsWith(prefix + 'bc')) {
-    if(!message.channel.guild) return message.channel.send('**This Command Only For Servers**').then(m => m.delete(5000));
-  if(!message.member.hasPermission('ADMINISTRATOR')) return      message.channel.send('**You Dont Have perms** `ADMINISTRATOR`' );
-    let args = message.content.split(" ").join(" ").slice(2 + prefix.length);
-    let copy = "Speed Bot";
-    let request = `Requested By ${message.author.username}`;
-    if (!args) return message.reply('**Write Some Things To Broadcast**');message.channel.send(`**Are You Sure \nThe Broadcast: ** \` ${args}\``).then(msg => {
-    msg.react('✅')
-    .then(() => msg.react('❌'))
-    .then(() =>msg.react('✅'))
-    
-    let reaction1Filter = (reaction, user) => reaction.emoji.name === '✅' && user.id === message.author.id;
-    let reaction2Filter = (reaction, user) => reaction.emoji.name === '❌' && user.id === message.author.id;
-    
-    let reaction1 = msg.createReactionCollector(reaction1Filter, { time: 12000 });
-    let reaction2 = msg.createReactionCollector(reaction2Filter, { time: 12000 });
- reaction1.on("collect", r => {
-    message.channel.send(`**☑ | Done ... The Broadcast Message Has Been Sent To __${message.guild.members.size}__ Members**`).then(m => m.delete(5000));
-    message.guild.members.forEach(m => {
-  
-  var bc = new
-       Discord.RichEmbed()
-       .setColor('RANDOM')
-       .setTitle('Broadcast')
-       .addField('Server', message.guild.name)
-       .addField('Sender', message.author.username)
-       .addField('Message', args)
-       .setThumbnail(message.author.avatarURL)
-       .setFooter(copy, client.user.avatarURL);
-    m.send({ embed: bc })
-    msg.delete();
-    })
-    })
-    reaction2.on("collect", r => {
-    message.channel.send(`**Broadcast Canceled.**`).then(m => m.delete(5000));
-    msg.delete();
-    })
-    })
-    }
-    });
-
 client.on("message", message => {
-	var prefix = "-";
+	var prefix = "*";
 	var args = message.content.split(' ').slice(1); 
 	var msg = message.content.toLowerCase();
 	if( !message.guild ) return;
@@ -265,7 +221,7 @@ client.on("message", message => {
 });
 
 client.on('message', message => {
-    if (message.content === "-rooms") {
+    if (message.content === "*rooms") {
         if (message.author.bot) return
                       if (!message.guild) return;
 
@@ -285,7 +241,7 @@ client.on('ready', () => {
   });
 
 client.on('message', message => {
-var prefix = "-";
+var prefix = "*";
       if(message.content === prefix + "hchannel") {
       if(!message.channel.guild) return;
       if(!message.member.hasPermission('ADMINISTRATOR')) return message.reply('You Dont Have Perms :x:');
@@ -298,7 +254,7 @@ var prefix = "-";
 
 
 client.on('message', message => {
-var prefix = "-";
+var prefix = "*";
       if(message.content === prefix + "schannel") {
       if(!message.channel.guild) return;
       if(!message.member.hasPermission('ADMINISTRATOR')) return message.reply(':x:');
@@ -310,7 +266,7 @@ var prefix = "-";
 });
 
 client.on('message',function(message) {
-	let prefix = "-";
+	let prefix = "*";
 let args = message.content.split(" ").slice(1).join(" ");
 if(message.content.startsWith(prefix + "say")) {
 if(!args) return;
@@ -322,7 +278,7 @@ message.channel.send(`**# ${args}**`);
 
 client.on('message', async message =>{
   if (message.author.boss) return;
-	var prefix = "-";
+	var prefix = "*";
 
 if (!message.content.startsWith(prefix)) return;
 	let command = message.content.split(" ")[0];
@@ -380,7 +336,7 @@ if(!message.guild.member(client.user).hasPermission("MANAGE_MESSAGES")) return m
 });
 
 client.on('message', message => {
-	var prefix = "-";
+	var prefix = "*";
     if(message.content.startsWith(prefix + 'mvall')) {
      if (!message.member.hasPermission("MOVE_MEMBERS")) return message.channel.send('**:x: You Dont Have Perms `MOVE_MEMBERS`**');
        if(!message.guild.member(client.user).hasPermission("MOVE_MEMBERS")) return message.reply("**:x: I Dont Have Perms `MOVE_MEMBERS`**");
@@ -397,7 +353,7 @@ client.on('message', message => {
        });
 
 client.on('message', message => {
-	var prefix = "-"
+	var prefix = "*"
   if (message.author.x5bz) return;
   if (!message.content.startsWith(prefix)) return;
 
@@ -434,7 +390,7 @@ client.on('message', message => {
 });
 
 client.on('message', message => {
-	var prefix = "-"
+	var prefix = "*"
   if (message.author.x5bz) return;
   if (!message.content.startsWith(prefix)) return;
 
@@ -471,7 +427,7 @@ client.on('message', message => {
 });
 
 client.on('message', message => {
-var prefix = "-";
+var prefix = "*";
        if(message.content === prefix + "mutechannel") {
                            if(!message.channel.guild) return message.reply('** This command only for servers**');
 
@@ -498,7 +454,7 @@ var prefix = "-";
 });
 
 client.on('message', message => {
-   if (message.content.startsWith("-id")) {
+   if (message.content.startsWith("*id")) {
                 if(!message.channel.guild) return message.reply('** This command only for servers**');
 
                var mentionned = message.mentions.users.first();
@@ -537,7 +493,7 @@ client.on('message', message => {
    });
    
    client.on('message', message => {
-        if (message.content === "-invinte") {
+        if (message.content === "*invinte") {
             if(!message.channel.guild) return;
         let embed = new Discord.RichEmbed()
         .setAuthor(` ${message.author.username} `, message.author.avatarURL)      
@@ -549,7 +505,7 @@ client.on('message', message => {
    });
  
 client.on('message', message => {
-    if (message.content.startsWith("-avatar")) {
+    if (message.content.startsWith("*avatar")) {
 if(!message.channel.guild) return;
         var mentionned = message.mentions.users.first();
     var client;
@@ -566,7 +522,7 @@ if(!message.channel.guild) return;
 });
 
 client.on('message', message => {
-            var prefix = "-";
+            var prefix = "*";
     if (message.author.bot) return;
     if (!message.content.startsWith(prefix)) return;
 
@@ -587,7 +543,7 @@ client.on('message', message => {
 
 
    client.on('message', message => {
-     if (message.content === "-support") {
+     if (message.content === "*support") {
      let embed = new Discord.RichEmbed()
   .setAuthor(message.author.username)
   .setColor("#9B59B6")
@@ -598,7 +554,7 @@ client.on('message', message => {
     }
 });
 client.on('message', omar => {
-var prefix = "-";
+var prefix = "*";
 if(omar.content.split(' ')[0] == prefix + 'dc') {  // delete all channels
 if (!omar.channel.guild) return;
 if(!omar.guild.member(omar.author).hasPermission("MANAGE_CHANNELS")) return omar.reply("**You Don't Have ` MANAGE_CHANNELS ` Permission**");
@@ -619,7 +575,7 @@ omar.reply("✅ `Success Deleted All Roles - Ranks`")
 });
 
 client.on('message', message => {
-	var prefix = "-";
+	var prefix = "*";
    if(!message.channel.guild) return;
 if(message.content.startsWith(prefix + 'clear')) {
 if(!message.channel.guild) return message.channel.send('**This Command is Just For Servers**').then(m => m.delete(5000));
@@ -661,7 +617,7 @@ msg.delete();
 
   
 client.on("message", message => {
-    var prefix = "-";
+    var prefix = "*";
     const command = message.content.split(" ")[0];
 
     if(command == prefix+"kv"){
@@ -695,7 +651,7 @@ client.on("message", message => {
 client.on('message',async message => {
     const moment = require('moment');
 const ms = require('ms')
-    var prefix = '-' //بريفكس البوت
+    var prefix = '*' //بريفكس البوت
   var time = moment().format('Do MMMM YYYY , hh:mm');
   var room;
   var title;
@@ -791,7 +747,7 @@ client.on("guildMemberAdd", member => {
 })
 
 client.on("message", message => {
-let prefix = "-";
+let prefix = "*";
 let args = message.content.split(' ');
   if(args[0].toLowerCase() === (prefix + "server")) {
         let embed = new Discord.RichEmbed()
@@ -996,7 +952,7 @@ client.on('message', message => {
 	if (!message.channel.guild) return;
 	if (message.author.bot) return;
 	    if (!prefixes[message.guild.id]) prefixes[message.guild.id] = {
-        prefix: '!',
+        prefix: '*',
     };
     var prefix = prefixes[message.guild.id].prefix;
     if (message.content.startsWith(prefix + `ping`)) {
