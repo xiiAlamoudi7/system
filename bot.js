@@ -910,21 +910,6 @@ EpicEdiTeD[message.author.id].Money+= 0.25;
  
 });
 
-client.on('message', message => {
-	if (!message.channel.guild) return;
-	if (message.author.bot) return;
-	    if (!prefixes[message.guild.id]) prefixes[message.guild.id] = {
-        prefix: '*',
-    };
-    var prefix = prefixes[message.guild.id].prefix;
-    if (message.content.startsWith(prefix + `ping`)) {
-        return message.channel.send(`Ping : ${Date.now() - message.createdTimestamp}.`);
-    }
-     fs.writeFile("./Database/prefix.json", JSON.stringify(prefixes), (err) => {
-        if (err) console.error(err);
-    });
-}); 
-
 let profile = {};
       client.on('message', message => {
           if(!profile[message.author.id]) profile[message.author.id] ={
