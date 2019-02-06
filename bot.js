@@ -981,7 +981,6 @@ client.on('guildMemberAdd', member=> {
     });
 
 const { Client } = require('discord.js');
-const prefix = "*";
 const client = new Client();
 
 client.on('ready', () => {
