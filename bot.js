@@ -981,11 +981,6 @@ client.on('guildMemberAdd', member=> {
     });
 
 const { Client } = require('discord.js');
-const client = new Client();
-
-client.on('ready', () => {
-    console.log('ready');
-});
 
 client.on('message', message => {
     let args = message.content.split(' ').slice(1);
@@ -1003,7 +998,7 @@ client.on('message', message => {
 
 client.on("message", async message => {
             if(!message.channel.guild) return;
-            var prefix = "-";
+            var prefix = "*";
         if(message.content.startsWith(prefix + 'invites')) {
         var nul = 0
         var guild = message.guild
