@@ -1109,7 +1109,7 @@ client.on(`ready`, () => {
 });
 
 giftKeys = {};
-let devs = ["295216776428388362"]; // تقدر تضيف ايدي ثالث نفس الفكره تسوي كذا let devs = ["ايديك","ايدي خويك او إي ادمن","ايدي خويك الثالث"]; 
+let devs = ["295216776428388362"];
 client.on("message", msg =>{
   let args = msg.content.split(" ").slice(1)[0];
   let cmd = msg.content.split(' ')[0]
