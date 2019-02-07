@@ -1063,7 +1063,6 @@ var data = JSON.parse(fs.readFileSync(`./data.json`, `UTF8`));
 if (!prefix) {
     var prefix = data.prefix;
 } else {
-    prefix = data.prefix;
 };
 client.on(`message`, msg => {
     if (msg.author.bot) return;
