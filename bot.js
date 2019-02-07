@@ -1061,7 +1061,6 @@ if (!fs) {
 }
 var data = JSON.parse(fs.readFileSync(`./data.json`, `UTF8`));
 if (!prefix) {
-    var prefix = data.prefix;
 } else {
 };
 client.on(`message`, msg => {
