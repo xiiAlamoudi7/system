@@ -17,24 +17,6 @@ client.on('message', msg => {
   }
 });
 
-client.on("message", message => {
-    if (message.content === `${prefix}help`) {
-  const embed = new Discord.RichEmbed()
-      .setColor("#111111")
-      .setDescription(`*ping
-*clr [number]
-*clear
-*bot
-*vonline
-*ccolors
-*move `Use : * move @User`
-*count
-*role`)
-   message.author.sendEmbed(embed)
-   
-   }
-   });
-
  client.on('message' , message => {
   var prefix = "*";
   if(message.author.bot) return;
