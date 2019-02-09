@@ -21,8 +21,7 @@ client.on("message", message => {
     if (message.content === `${prefix}help`) {
   const embed = new Discord.RichEmbed()
       .setColor("#111111")
-      .setDescription(`
-*ping
+      .setDescription(`*ping
 *clr [number]
 *clear
 *bot
@@ -30,8 +29,7 @@ client.on("message", message => {
 *ccolors
 *move `Use : * move @User`
 *count
-*role
-`)
+*role`)
    message.author.sendEmbed(embed)
    
    }
