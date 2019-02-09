@@ -1,8 +1,8 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const fs = require("fs");
-var = require('ms')
-var moment = require('moment');
+const = require('ms')
+const moment = require('moment');
 let prefix = "*"
 
 
