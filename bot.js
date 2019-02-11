@@ -15,6 +15,18 @@ client.on('message', msg => {
   }
 });
 
+client.on("message", message => {
+    if (message.content === `${prefix}help`) {
+  const embed = new Discord.RichEmbed()
+      .setColor("#111111")
+      .setDescription(`
+*ping
+`)
+   message.author.sendEmbed(embed)
+   
+   }
+   });
+
  client.on('message' , message => {
   var prefix = "*";
   if(message.author.bot) return;
@@ -460,7 +472,7 @@ client.on('message', message => {
 
 
 client.on('message', message => {
-        if (message.content === "-invite") {
+        if (message.content === "*invite") {
             if(!message.channel.guild) return;
         let embed = new Discord.RichEmbed()
         .setAuthor(` ${message.author.username} `, message.author.avatarURL)      
