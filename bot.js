@@ -20,8 +20,53 @@ client.on("message", message => {
   const embed = new Discord.RichEmbed()
       .setColor("#111111")
       .setDescription(`
+╭━━━━┳╮╱╱╱╱╱╱╱╱╱╭╮╱╱╱╱╭━━╮╱╱╱╭╮
+┃╭╮╭╮┃┃╱╱╱╱╱╱╱╱╱┃┃╱╱╱╱┃╭╮┃╱╱╭╯╰╮
+╰╯┃┃╰┫╰━┳╮╭┳━╮╭━╯┣━━┳━┫╰╯╰┳━┻╮╭╯
+╱╱┃┃╱┃╭╮┃┃┃┃╭╮┫╭╮┃┃━┫╭┫╭━╮┃╭╮┃┃
+╱╱┃┃╱┃┃┃┃╰╯┃┃┃┃╰╯┃┃━┫┃┃╰━╯┃╰╯┃╰╮
+╱╱╰╯╱╰╯╰┻━━┻╯╰┻━━┻━━┻╯╰━━━┻━━┻━╯
+
+
+
+الأوامر العامه
+
+*id أمر ألايدي
+*clr [numder] لمسح الشات بعدد
+*clear لمسح الشات
+*bot معلمومات عن البوت
+*color لتغيير لونك في السيرفر
+*avatar يعرض لك افاتارك
+*rooms عدد الرومات في السيرفر
+*rank عرض رانكك
+*count عدد اعضاء السيرفر
+
+الأوامر الأداريه
+
+*mute @user
+*unmute @user
+*ban @user
+*gstart room [no mention to room] time present
+*move @user
+*invites
+*inviteCodes
+*role @user [role name]
+*hchannel
+*schannel
+*mvall
+*mutechannel
+*dc [delete channels]
+*dm ارسال علي الخاص
+
+لو تبي تسوي ويلكم مسج سوي روم بأسم welcome
+
+أوامر اخري
+
 *ping
-`)
+*support
+*invite
+*say
+*embed`)
    message.author.sendEmbed(embed)
    
    }
@@ -271,61 +316,6 @@ client.on('message', async message =>{
   if (message.author.boss) return;
 	var prefix = "*";
 
-if (!message.content.startsWith(prefix)) return;
-	let command = message.content.split(" ")[0];
-	 command = command.slice(prefix.length);
-	let args = message.content.split(" ").slice(1);
-	if (command == "mute") {
-		if (!message.channel.guild) return;
-		if(!message.guild.member(message.author).hasPermission("MANAGE_MESSAGES")) return message.reply(":x: You Dont Have Perms `MANAGE_MESSAGES`").then(msg => msg.delete(5000));
-		if(!message.guild.member(client.user).hasPermission("MANAGE_MESSAGES")) return message.reply("The Bot Haven't Perms `MANAGE_MESSAGES`").then(msg => msg.delete(5000));;
-		let user = message.mentions.users.first();
-		let muteRole = message.guild.roles.find("name", "Muted");
-		if (!muteRole) return message.reply("**You Should Create A Rank Name `Muted`**").then(msg => {msg.delete(5000)});
-		if (message.mentions.users.size < 1) return message.reply('**You Have To Mention SomeOne**').then(msg => {msg.delete(5000)});
-		let reason = message.content.split(" ").slice(2).join(" ");
-		message.guild.member(user).addRole(muteRole);
-		const muteembed = new Discord.RichEmbed()
-		.setColor("RANDOM")
-		.setAuthor(`Muted!`, user.displayAvatarURL)
-		.setThumbnail(user.displayAvatarURL)
-		.addField("**:busts_in_silhouette:  User**",  '**[ ' + `${user.tag}` + ' ]**',true)
-		.addField("**:hammer:  By**", '**[ ' + `${message.author.tag}` + ' ]**',true)
-		.addField("**:book:  Reason**", '**[ ' + `${reason}` + ' ]**',true)
-		.addField("User", user, true)
-		message.channel.send({embed : muteembed});
-		var muteembeddm = new Discord.RichEmbed()
-		.setAuthor(`Muted!`, user.displayAvatarURL)
-		.setDescription(`      
-${user} You Are Muted Because You Broke Rules 
-${message.author.tag} By
-[ ${reason} ] : Reason
-If You Didnt Any Thing GGO To Staff
-`)
-		.setFooter(`Server : ${message.guild.name}`)
-		.setColor("RANDOM")
-	user.send( muteembeddm);
-  }
-if(command === `unmute`) {
-  if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.sendMessage(":x: You Dont Have Perms `MANAGE_MESSAGES`").then(m => m.delete(5000));
-if(!message.guild.member(client.user).hasPermission("MANAGE_MESSAGES")) return message.reply("The Bot Haven't Perms `MANAGE_MESSAGES`").then(msg => msg.delete(6000))
-
-  let toMute = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
-  if(!toMute) return message.channel.sendMessage(":x: You Have To Mention SomeOne ");
-
-  let role = message.guild.roles.find (r => r.name === "Muted");
-  
-  if(!role || !toMute.roles.has(role.id)) return message.channel.sendMessage(":x: This User In Not Muted")
-
-  await toMute.removeRole(role)
-  message.channel.sendMessage(":white_check_mark: Succes Has Been Unmuted The User");
-
-  return;
-
-  }
-
-});
-
 client.on('message', message => {
 	var prefix = "*";
     if(message.content.startsWith(prefix + 'mvall')) {
@@ -342,43 +332,6 @@ client.on('message', message => {
 
      }
        });
-
-client.on('message', message => {
-	var prefix = "*"
-  if (message.author.x5bz) return;
-  if (!message.content.startsWith(prefix)) return;
-
-  let command = message.content.split(" ")[0];
-  command = command.slice(prefix.length);
-
-  let args = message.content.split(" ").slice(1);
-
-  if (command == "ban") {
-               if(!message.channel.guild) return message.reply('** This command only for servers**');
-         
-  if(!message.guild.member(message.author).hasPermission("BAN_MEMBERS")) return message.reply("**You Don't Have ` BAN_MEMBERS ` Permission**");
-  if(!message.guild.member(client.user).hasPermission("BAN_MEMBERS")) return message.reply("**I Don't Have ` BAN_MEMBERS ` Permission**");
-  let user = message.mentions.users.first();
-  let reason = message.content.split(" ").slice(2).join(" ");
-  if (message.mentions.users.size < 1) return message.reply("**Mention SomeOne**");
-  if(!reason) return message.reply ("**Write A Reason**");
-  if (!message.guild.member(user)
-  .bannable) return message.reply("**I Cant BAN SomeOne High Than My Rank**");
-
-  message.guild.member(user).ban(7, user);
-
-  const banembed = new Discord.RichEmbed()
-  .setAuthor(`BANNED!`, user.displayAvatarURL)
-  .setColor("RANDOM")
-  .setTimestamp()
-  .addField("**User:**",  '**[ ' + `${user.tag}` + ' ]**')
-  .addField("**By:**", '**[ ' + `${message.author.tag}` + ' ]**')
-  .addField("**Reason:**", '**[ ' + `${reason}` + ' ]**')
-  message.channel.send({
-    embed : banembed
-  })
-}
-});
 
 client.on('message', message => {
 	var prefix = "*"
@@ -1307,77 +1260,42 @@ client.on('message', message => {
  
 });
 
-const pretty = require('pretty-ms'); // npm i pretty-ms
-const credits = require('./Credits.json');
-const creditsPath = './Credits.json';
-client.on('message',async message => {
-    if(message.author.bot || message.channel.type === 'dm') return;
-    let args = message.content.split(' ');
-    let author = message.author.id;
-    if(!credits[author]) credits[author] = { messages: 0, credits: 0, xp: 0, daily: 86400000 };
-    credits[author].messages += 1;
-    credits[author].xp += 1;
-    if(credits[author].xp === 5) {
-        credits[author].xp = 0;
-        credits[author].credits += 1;
-        fs.writeFileSync(creditsPath, JSON.stringify(credits, null, 4));
-    }
-    fs.writeFileSync(creditsPath, JSON.stringify(credits, null, 4));
- 
-   
-   if(args[0].toLowerCase() == `${prefix}credit` || args[0].toLowerCase() === `${prefix}credits`) {
-       let mention = message.mentions.users.first() || message.author;
-       let mentionn = message.mentions.users.first();
-       if(!credits[mention.id]) return message.channel.send(`**❎ |** Failed To Find the **Needed Data**.`);
-       if(!args[2]) {
-        let creditsEmbed = new Discord.RichEmbed()
-       .setColor("#36393e")
-       .setAuthor(mention.username, mention.avatarURL)
-       .setThumbnail(mention.avatarURL)
-       .addField(`❯ الكردت`, `» \`${credits[mention.id].credits} $\`\n`, true)
-       .addField(`❯ الرسائل`, `» \`${credits[mention.id].messages} 💬\``, true);
-       message.channel.send(creditsEmbed);
-       
-       } else if(mentionn && args[2]) {
-           if(isNaN(args[2])) return message.channel.send(`**❎ |** The **"Number"** You Entered **Isn't Correct**.`);
-          if(mentionn.id === message.author.id) return message.channel.send(`**❎ |** You Can't Give **Credits** To **Yourself**.`);
-           if(args[2] > credits[author].credits) return message.channel.send(`**❎ |** You don't have **Enough** credits to give to ${mentionn}`);
-          let first = Math.floor(Math.random() * 9);
-          let second = Math.floor(Math.random() * 9);
-          let third = Math.floor(Math.random() * 9);
-          let fourth = Math.floor(Math.random() * 9);
-          let num = `${first}${second}${third}${fourth}`;
-         
-          message.channel.send(`**🛡 |** **Type** \`${num}\` To **Complete** the transfer!`).then(m => {
-              message.channel.awaitMessages(r => r.author.id === message.author.id, { max: 1, time: 20000, errors:['time'] }).then(collected => {
-                  let c = collected.first();
-                  if(c.content === num) {
-                          message.channel.send(`**✅ |** Successfully **Transfered** \`$${args[2]}\` !`);
-                          m.delete();
-                          c.delete();
-                          credits[author].credits += (-args[2]);
-                          credits[mentionn.id].credits += (+args[2]);
-                          fs.writeFileSync(creditsPath, JSON.stringify(credits, null, 4));
-                  } else {
-                          m.delete();
-                  }
-              });
-          });
-         
-      } else {
-          message.channel.send(`**❎ |** The **Syntax** should be like **\`${prefix}credits <Mention> [Ammount]\`**`);
-      }
-  } else if(args[0].toLowerCase() === `${prefix}daily`) {
-      if(credits[author].daily !== 86400000 && Date.now() - credits[author].daily !== 86400000) {
-          message.channel.send(`**❎ |** You already **Claimed** the daily ammount of credits since \`${pretty(Date.now() - credits[author].daily)}\`.`);
-      } else {
-          let ammount = getRandom(300, 500);
-          credits[author].daily = Date.now();
-          credits[author].credits += ammount;
-          fs.writeFileSync(creditsPath, JSON.stringify(credits, null, 4));
-          message.channel.send(`**✅ |** \`${ammount}\`, Successfully **Claimed** Your daily ammount of credits!`);
-      }
-  }
-});
+          client.on('message', message => {
+            let args = message.content.split(' ').slice(1);
+            if(message.content.split(' ')[0] == `${prefix}color`){
+            const embedd = new Discord.RichEmbed()
+            .setFooter('Requested by '+message.author.username, message.author.avatarURL)
+            .setDescription(`**لا يوجد لون بهذا الأسم ** ❌ `)
+            .setColor(`ff0000`)
+           
+            if(!isNaN(args) && args.length > 0)
+           
+           
+            if    (!(message.guild.roles.find("name",`${args}`))) return  message.channel.sendEmbed(embedd);
+           
+           
+            var a = message.guild.roles.find("name",`${args}`)
+             if(!a)return;
+            const embed = new Discord.RichEmbed()
+           
+            .setFooter('Requested by '+message.author.username, message.author.avatarURL)
+            .setDescription(`**Done , تم تغير لونك . ✅ **`)
+           
+            .setColor(`${a.hexColor}`)
+            message.channel.sendEmbed(embed);
+            if (!args)return;
+            setInterval(function(){})
+               let count = 0;
+               let ecount = 0;
+            for(let x = 1; x < 201; x++){
+           
+            message.member.removeRole(message.guild.roles.find("name",`${x}`))
+           
+            }
+             message.member.addRole(message.guild.roles.find("name",`${args}`));
+           
+           
+            }
+            });
 // THIS  MUST  BE  THIS  WAY
 client.login(process.env.BOT_TOKEN);
