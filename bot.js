@@ -17,9 +17,7 @@ client.on('message', msg => {
 
 client.on("message", message => {
     if (message.content === `${prefix}help`) {
-  const embed = new Discord.RichEmbed()
-      .setColor("#111111")
-      .setDescription(`
+    var rebel = `
 ╭━━━━┳╮╱╱╱╱╱╱╱╱╱╭╮╱╱╱╱╭━━╮╱╱╱╭╮
 ┃╭╮╭╮┃┃╱╱╱╱╱╱╱╱╱┃┃╱╱╱╱┃╭╮┃╱╱╭╯╰╮
 ╰╯┃┃╰┫╰━┳╮╭┳━╮╭━╯┣━━┳━┫╰╯╰┳━┻╮╭╯
@@ -65,8 +63,8 @@ client.on("message", message => {
 *support
 *invite
 *say
-*embed`)
-   message.author.sendEmbed(embed)
+*embed    `
+   message.author.send(rebel)
    
    }
    });
@@ -1257,7 +1255,6 @@ client.on('message', message => {
  
    }
  
-});
-	
+});	
 // THIS  MUST  BE  THIS  WAY
 client.login(process.env.BOT_TOKEN);
