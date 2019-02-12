@@ -15,59 +15,7 @@ client.on('message', msg => {
   }
 });
 
-client.on("message", message => {
-    if (message.content === `${prefix}help`) {
-    var rebel = `
-╭━━━━┳╮╱╱╱╱╱╱╱╱╱╭╮╱╱╱╱╭━━╮╱╱╱╭╮
-┃╭╮╭╮┃┃╱╱╱╱╱╱╱╱╱┃┃╱╱╱╱┃╭╮┃╱╱╭╯╰╮
-╰╯┃┃╰┫╰━┳╮╭┳━╮╭━╯┣━━┳━┫╰╯╰┳━┻╮╭╯
-╱╱┃┃╱┃╭╮┃┃┃┃╭╮┫╭╮┃┃━┫╭┫╭━╮┃╭╮┃┃
-╱╱┃┃╱┃┃┃┃╰╯┃┃┃┃╰╯┃┃━┫┃┃╰━╯┃╰╯┃╰╮
-╱╱╰╯╱╰╯╰┻━━┻╯╰┻━━┻━━┻╯╰━━━┻━━┻━╯
 
-
-
-الأوامر العامه
-
-*id أمر ألايدي
-*clr [numder] لمسح الشات بعدد
-*clear لمسح الشات
-*bot معلمومات عن البوت
-*avatar يعرض لك افاتارك
-*rooms عدد الرومات في السيرفر
-*rank عرض رانكك
-*count عدد اعضاء السيرفر
-
-الأوامر الأداريه
-
-*mute @user
-*unmute @user
-*ban @user
-*gstart room [no mention to room] time present
-*move @user
-*invites
-*inviteCodes
-*role @user [role name]
-*hchannel
-*schannel
-*mvall
-*mutechannel
-*dc [delete channels]
-*dm ارسال علي الخاص
-
-لو تبي تسوي ويلكم مسج سوي روم بأسم welcome
-
-أوامر اخري
-
-*ping
-*support
-*invite
-*say
-*embed    `
-   message.author.send(rebel)
-   
-   }
-   });
 
  client.on('message' , message => {
   var prefix = "*";
@@ -1255,6 +1203,7 @@ client.on('message', message => {
  
    }
  
-});	
+});
+	
 // THIS  MUST  BE  THIS  WAY
 client.login(process.env.BOT_TOKEN);
