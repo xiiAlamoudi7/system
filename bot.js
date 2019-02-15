@@ -309,10 +309,6 @@ message.channel.send(`**# ${args}**`);
 
   
 
-client.on('message', async message =>{
-  if (message.author.boss) return;
-	var prefix = "*";
-
 client.on('message', message => {
 	var prefix = "*";
     if(message.content.startsWith(prefix + 'mvall')) {
