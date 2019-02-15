@@ -51,7 +51,6 @@ ${prefix}schannel
 ${prefix}mvall
 ${prefix}mutechannel
 ${prefix}dc [delete channels]
-${prefix}dm ارسال علي الخاص
 
 (لو تبي تسوي ويلكم مسج سوي روم بأسم welcome)
 
