@@ -18,7 +18,7 @@ client.on('message', msg => {
 client.on("message", message => {
     if (message.content === `${prefix}help`) {
     var rebel = `
-╭━━━━┳╮╱╱╱╱╱╱╱╱╱╭╮╱╱╱╱╭━━╮╱╱╱╭╮
+**╭━━━━┳╮╱╱╱╱╱╱╱╱╱╭╮╱╱╱╱╭━━╮╱╱╱╭╮
 ┃╭╮╭╮┃┃╱╱╱╱╱╱╱╱╱┃┃╱╱╱╱┃╭╮┃╱╱╭╯╰╮
 ╰╯┃┃╰┫╰━┳╮╭┳━╮╭━╯┣━━┳━┫╰╯╰┳━┻╮╭╯
 ╱╱┃┃╱┃╭╮┃┃┃┃╭╮┫╭╮┃┃━┫╭┫╭━╮┃╭╮┃┃
@@ -63,7 +63,7 @@ client.on("message", message => {
 *support
 *invite
 *say
-*embed    `
+*embed**    `
    message.author.send(rebel)
    
    }
