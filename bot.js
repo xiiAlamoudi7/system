@@ -39,9 +39,8 @@ ${prefix}invites
 ${prefix}inviteCodes
 ${prefix}count : عدد اعضاء السيرفر
 ${prefix}find : (اي حرق من الاسم الي تبيه)
-${prefix}server
 
-**__الاوامــر الاداريه__** :closed_lock_with_key:
+**الاوامــر الاداريه** :closed_lock_with_key:
 ${prefix}mute @user
 ${prefix}unmute @user
 ${prefix}ban @user (unban soon !)
@@ -53,6 +52,7 @@ ${prefix}schannel
 ${prefix}mvall
 ${prefix}mutechannel
 ${prefix}dc [delete channels]
+${prefix}vonline
 
 (لو تبي تسوي ويلكم مسج سوي روم بأسم welcome)
 
