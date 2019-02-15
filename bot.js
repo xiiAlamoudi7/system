@@ -38,6 +38,8 @@ ${prefix}rank : عرض رانكك
 ${prefix}invites
 ${prefix}inviteCodes
 ${prefix}count : عدد اعضاء السيرفر
+${prefix}find : (اي حرق من الاسم الي تبيه)
+${prefix}server
 
 **__الاوامــر الاداريه__** :closed_lock_with_key:
 ${prefix}mute @user
@@ -550,39 +552,6 @@ msg.delete();
 }
 });
 
-  
-client.on("message", message => {
-    var prefix = "*";
-    const command = message.content.split(" ")[0];
-
-    if(command == prefix+"kv"){
-
-        if (!message.guild.member(message.author).hasPermission('MOVE_MEMBERS') || !message.guild.member(message.author).hasPermission('ADMINISTRATOR')) {
-            return message.reply('you do not have permission to perform this action!');
-        }
-
-        var member = message.guild.members.get(message.mentions.users.array()[0].id);
-        if(!message.mentions.users){
-            message.reply("please mention the member")
-            return;
-        }
-
-    if(!member.voiceChannel){
-    message.reply("i can't include voice channel for member!")
-    return;
-    }
-              message.guild.createChannel('voicekick', 'voice').then(c => {
-                member.setVoiceChannel(c).then(() => {
-                    c.delete(305).catch(console.log)
-        
-
-
-    
-      });
-     });
-    }
-});
-
 client.on('message',async message => {
     const moment = require('moment');
 const ms = require('ms')
@@ -681,27 +650,6 @@ client.on("guildMemberAdd", member => {
 }).catch(console.error)
 })
 
-client.on("message", message => {
-let prefix = "*";
-let args = message.content.split(' ');
-  if(args[0].toLowerCase() === (prefix + "server")) {
-        let embed = new Discord.RichEmbed()
-        .addField(`:id: Server ID:`, `${message.guild.id}`, true)
-        .addField(`:calendar: Created on:`, `${moment(message.guild.createdAt).format(`D/M/YYYY h:mm`)} \n ${moment(message.guild.createdAt).locale("AR-eg").fromNow()}`,true)
-        .addField(`:crown: Owned by`, `${message.guild.owner.user.tag} [${message.guild.owner.user.id}]`,true) 
-        .addField(`:busts_in_silhouette: Members [${message.guild.members.size}]`, `**${message.guild.members.filter(c => c.presence.status !== "offline").size}** Online`, true)
-        .addField(`:speech_balloon: Channels [${message.guild.channels.size}]`,`**${message.guild.channels.filter(f => f.type === "text").size}** Text | **${message.guild.channels.filter(f => f.type === "voice").size}** Voice`,true)
-        .addField(`:earth_africa: Others`, `**Region:** ${message.guild.region} \n **Verification level:** ${message.guild.verificationLevel}`, true)  
-        .addField(`:closed_lock_with_key: Roles [${message.guild.roles.size}]`, `To see the whole list with all roles use **${prefix}roles**`, true) 
-        .setThumbnail(`${message.guild.iconURL}`)
-        .setColor(`black`)
-        .setAuthor(`${message.guild.name}`, `${message.guild.iconURL}`);
-       
-    message.channel.sendEmbed(embed);
-    }
-
-});
-
 client.on('guildCreate', guild => {
     var embed = new Discord.RichEmbed()
     .setColor(0x5500ff)
@@ -757,56 +705,6 @@ client.on('message', message => {
         
         message.channel.send(playersFind);
         message.delete();
-    }
-});
-
-client.on('message', async message => {
-if(message.author.bot) return;
-if (message.channel.guild) {
-if (message.content.startsWith(prefix + 'voicerank')) {
-message.channel.send(`Your XP : ${voice[message.member.id].xp}
-Your Level : ${voice[message.member.id].level}`);
-        if(e) console.log(e);
-      };
-}});
-
-client.on('message' , async (message) => {
-    if(message.content.startsWith("topinvite")) {
-if(message.author.bot) return;
-if(!message.channel.guild) return message.reply(' Error : \` Guild Command \`');
-  var invites = await message.guild.fetchInvites();
-    invites = invites.array();
-    arraySort(invites, 'uses', { reverse: true });
-    let possibleInvites = ['User Invited |  Uses '];
-    invites.forEach(i => {
-        if (i.uses === 0) { 
-            return;
-        }
-      possibleInvites.push(['\n\ ' +'<@'+ i.inviter.id +'>' + '  :  ' +   i.uses]);
-      if (i.uses === 30) {//يمديك تعدل رقم وصول العدد حق الانفايت الى اأقل أو أكثر
-          message.member.addRole(message.member.guild.roles.find("name","??Special?‏‏?  ?"))//هنآ أسم ألرتبه اللي تجيهه
-.catch(RebeL =>{
-console.log('`Error`: ' + RebeL);
-});
-}
-if (i.uses === 30) {
-message.member.addRole(message.member.guild.roles.find("name","??Special?‏‏?  ?"))
-.catch(RebeL =>{
-console.log('`Error`: ' + RebeL);
-});
-}
-if (i.uses === 30) {
-message.member.addRole(message.member.guild.roles.find("name","??Special?‏‏?  ?"))
-.catch(RebeL =>{
-console.log('`Error`: ' + RebeL);
-});
-      }//معلومه بسيطه يمديك تكرر العمليهه أكثر من مره
-    })
-    const embed = new Discord.RichEmbed()
- .setColor('#36393e')
-    .addField("Top Invites." ,`${(possibleInvites)}`)
-
-    message.channel.send(embed)
     }
 });
 
