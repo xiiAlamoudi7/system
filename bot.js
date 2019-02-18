@@ -1584,34 +1584,34 @@ bot.on('messageUpdate', (oldmsg, newmsg) => {
 })
 
 const adminprefix = "s!";
-Rocket.on('message', message => {//for dev
+client.on('message', message => {//for dev
   var argresult = message.content.split(` `).slice(1).join(' ');
     if (!devs.includes(message.author.id)) return;
 
 if (message.content.startsWith(adminprefix + 'setgame')) {
-  Rocket.user.setGame(argresult);
+  client.user.setGame(argresult);
     message.channel.sendMessage(`**${argresult} تم تغيير بلاينق البوت إلى **`)
 } else
   if (message.content.startsWith(adminprefix + 'setname')) {
-Rocket.user.setUsername(argresult).then
+client.user.setUsername(argresult).then
     message.channel.sendMessage(`**${argresult}** : تم تغيير أسم البوت إلى`)
 return message.reply("**لا يمكنك تغيير الاسم يجب عليك الانتظآر لمدة ساعتين . **");
 } else
   if (message.content.startsWith(adminprefix + 'setavatar')) {
-Rocket.user.setAvatar(argresult);
+client.user.setAvatar(argresult);
   message.channel.sendMessage(`**${argresult}** : تم تغير صورة البوت`);
       } else
 if (message.content.startsWith(adminprefix + 'setT')) {
-  Rocket.user.setGame(argresult, "https://www.twitch.tv/faresgameryt");
+  client.user.setGame(argresult, "https://www.twitch.tv/faresgameryt");
     message.channel.sendMessage(`**تم تغيير تويتش البوت إلى  ${argresult}**`)
 }
 
-Rocket.on('message', message => {//restart
+client.on('message', message => {//restart
     if(message.content === adminprefix + "restart") {
           if (!devs.includes(message.author.id)) return;
               message.channel.send(`⚠️ **الشخص الذي اعاد تشغيل البوت ${message.author.username}**`);
             console.log(`⚠️ جاري اعادة تشغيل البوت... ⚠️`);
-            Rocket.destroy();
+            client.destroy();
             child_process.fork(__dirname + "/bot.js");
             console.log(`تم اعادة تشغيل البوت`);
         }
