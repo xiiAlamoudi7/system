@@ -2356,7 +2356,7 @@ message.channel.sendEmbed(sh);
           })
         })
     })
-    spee[id] = (new Date).getTime()
+    speed[id] = (new Date).getTime()
 }
 });
 // THIS  MUST  BE  THIS  WAY
