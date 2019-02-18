@@ -1,7 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const fs = require("fs");
-const premium = ['295216776428388362']
 let prefix = "*"
 
 
@@ -1585,7 +1584,6 @@ bot.on('messageUpdate', (oldmsg, newmsg) => {
 })
 
 const adminprefix = "s!";
-const devs = ['295216776428388362','444648241687166978'];
 Rocket.on('message', message => {//for dev
   var argresult = message.content.split(` `).slice(1).join(' ');
     if (!devs.includes(message.author.id)) return;
