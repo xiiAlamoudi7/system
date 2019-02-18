@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const fs = require("fs");
+const premium = ['295216776428388362']
 let prefix = "*"
 
 
@@ -29,8 +30,7 @@ message.author.send(`
 **الاوامــر االعامه** :earth_africa:
 **
 ${prefix}id : أمر ألايدي
-${prefix}clr [number] : لمسح الشات بعدد
-${prefix}clear : لمسح الشات
+${prefix}clear : بعدد او من غير عدد) لمسح الشات)
 ${prefix}bot : معلمومات عن البوت
 ${prefix}avatar : يعرض لك افاتارك
 ${prefix}rooms : عدد الرومات في السيرفر
@@ -55,6 +55,7 @@ ${prefix}dc [delete channels]
 ${prefix}vonline
 
 (لو تبي تسوي ويلكم مسج سوي روم بأسم welcome)
+(لتفعيل اللوق سوي روم بأسم log)
 
 **الاوامــر أخري** :red_circle: 
 ${prefix}ping
@@ -79,30 +80,20 @@ ${prefix}embed
   }  
  });
  
-client.on('message', msg => {
-	var prefix = "*";
-  if (msg.author.bot) return;
-  if (!msg.content.startsWith(prefix)) return;
-  let command = msg.content.split(" ")[0];
-  command = command.slice(prefix.length);
-  let args = msg.content.split(" ").slice(1);
-
-    if(command === "clr") {
-        const emoji = client.emojis.find("name", "wastebasket")
-    let textxt = args.slice(0).join("");
-    if(msg.member.hasPermission("MANAGE_MESSAGES")) {
-    if (textxt == "") {
-        msg.delete().then
-    msg.channel.send("***```Supply A Number```***").then(m => m.delete(3000));
-} else {
-    msg.delete().then
-    msg.delete().then
-    msg.channel.bulkDelete(textxt);
-        msg.channel.send("```Cleard: " + textxt + " Messages```").then(m => m.delete(3000));
-        }    
-    }
-}
-});
+client.on('message', message => {  
+    if (message.author.bot) return;
+if (message.content.startsWith(prefix + 'clear')) { //Codes
+    if(!message.channel.guild) return message.reply('⛔ | This Command For Servers Only!'); 
+        if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send('⛔ | You dont have **MANAGE_MESSAGES** Permission!');
+        if(!message.guild.member(client.user).hasPermission('MANAGE_MESSAGES')) return message.channel.send('⛔ | I dont have **MANAGE_MESSAGES** Permission!');
+ let args = message.content.split(" ").slice(1)
+    let messagecount = parseInt(args);
+    if (args > 99) return message.reply("**🛑 || يجب ان يكون عدد المسح أقل من 100 .**").then(messages => messages.delete(5000))
+    if(!messagecount) args = '100';
+    message.channel.fetchMessages({limit: messagecount + 1}).then(messages => message.channel.bulkDelete(messages));
+    message.channel.send(`\`${args}\` : __عدد الرسائل التي تم مسحها __ `).then(messages => messages.delete(5000));
+  }
+  }); //Julian
 
 client.on('message', ra3d => {
 var prefix = "*";
@@ -204,54 +195,6 @@ message.react("❌")
       .addField('Mmeber Count',`${message.guild.memberCount}`)
       message.channel.send(IzRo);
     });
-
-client.on("message", message => {
-	var prefix = "*";
-	var args = message.content.split(' ').slice(1); 
-	var msg = message.content.toLowerCase();
-	if( !message.guild ) return;
-	if( !msg.startsWith( prefix + 'role' ) ) return;
-	if(!message.member.hasPermission('MANAGE_ROLES')) return message.channel.send(' **__You Dont Have Permissions__**');
-	if( msg.toLowerCase().startsWith( prefix + 'roleremove' ) ){
-		if( !args[0] ) return message.reply( '**:x: Mention User**' );
-		if( !args[1] ) return message.reply( '**:x: Write Name Of Role To Remove it From The User**' );
-		var role = msg.split(' ').slice(2).join(" ").toLowerCase(); 
-		var role1 = message.guild.roles.filter( r=>r.name.toLowerCase().indexOf(role)>-1 ).first(); 
-		if( !role1 ) return message.reply( '**:x: Mention Role To Remove it From The User**' );if( message.mentions.members.first() ){
-			message.mentions.members.first().removeRole( role1 );
-			return message.reply('**:white_check_mark: Success Removed Role [ '+role1.name+' ] From [ '+args[0]+' ]**');
-		}
-		if( args[0].toLowerCase() == "all" ){
-			message.guild.members.forEach(m=>m.removeRole( role1 ))
-			return	message.reply('**:white_check_mark: Succes Removed Rank [ '+role1.name+' ]  From All**');
-		} else if( args[0].toLowerCase() == "bots" ){
-			message.guild.members.filter(m=>m.user.bot).forEach(m=>m.removeRole(role1))
-			return	message.reply('**:white_check_mark: Succes Removed Rank [ '+role1.name+' ] From All Bots**');
-		} else if( args[0].toLowerCase() == "humans" ){
-			message.guild.members.filter(m=>!m.user.bot).forEach(m=>m.removeRole(role1))
-			return	message.reply('**:white_check_mark: Succes Removed Rank [ '+role1.name+' ] From All Humans**');
-		} 	
-	} else {
-		if( !args[0] ) return message.reply( '**:x: Mention User**' );
-		if( !args[1] ) return message.reply( '**:x: Write Name Of Role To Give It To User**' );
-		var role = msg.split(' ').slice(2).join(" ").toLowerCase(); 
-		var role1 = message.guild.roles.filter( r=>r.name.toLowerCase().indexOf(role)>-1 ).first(); 
-		if( !role1 ) return message.reply( '**:x: Write Name Of Role To Give It To User**' );if( message.mentions.members.first() ){
-			message.mentions.members.first().addRole( role1 );
-			return message.reply('**:white_check_mark:Success Gived Rank [ '+role1.name+' ] To [ '+args[0]+' ]**');
-		}
-		if( args[0].toLowerCase() == "all" ){
-			message.guild.members.forEach(m=>m.addRole( role1 ))
-			return	message.reply('**:white_check_mark: Success Gived All Rank [ '+role1.name+' ]**');
-		} else if( args[0].toLowerCase() == "bots" ){
-			message.guild.members.filter(m=>m.user.bot).forEach(m=>m.addRole(role1))
-			return	message.reply('**:white_check_mark: Success Gived All Bots Rank [ '+role1.name+' ] **');
-		} else if( args[0].toLowerCase() == "humans" ){
-			message.guild.members.filter(m=>!m.user.bot).forEach(m=>m.addRole(role1))
-			return	message.reply('**:white_check_mark: Success Gived All Humans Rank [ '+role1.name+' ]**');
-		} 
-	} 
-});
 
 client.on('message', message => {
     if (message.content === "*rooms") {
@@ -1148,6 +1091,737 @@ client.on('message', message => {
    }
  
 });
-	
+
+const Discord = require(`discord.js`)
+const dateformat = require('dateformat');
+const bot = new Discord.Client();
+bot.login(`NTIyMDgzOTcwOTIyMzE1Nzk3.DvF0iw.btooTPA0HDZCM9oRR-iUYFxUNPw`);
+
+bot.on(`ready`, () => {
+  console.log(`Log Bot | 0%`);
+  console.log(bot.user.id);
+})
+
+bot.on(`guildMemberUpdate`, async (om, nm) => {
+  if(!om || !om.id) return;
+
+  const channel = nm.guild.channels.find(ch => ch.name == 'log')
+  if(!channel) return console.log('I can\'t find it');
+
+
+
+    om.guild.fetchAuditLogs()
+    .then(async logs => {
+      let user = logs.entries.first().executor
+      let changes = logs.entries.first().changes
+
+
+      if(om.roles.size < nm.roles.size) {
+
+        let role = changes[0].new
+        let name = role[0].name
+        let id = role[0].id
+
+        let embed = new Discord.RichEmbed()
+        .setAuthor(`${nm.user.tag}`, nm.user.displayAvatarURL)
+        .setTimestamp()
+        .setDescription(`:white_check_mark: ${nm} was given the \`${name}\` role by ${user}`)
+
+        channel.send("", { embed : embed } )
+
+}
+    if(om.roles.size > nm.roles.size) {
+
+      let role = changes[0].new
+      let name = role[0].name
+      let id = role[0].id
+
+      let embed = new Discord.RichEmbed()
+      .setAuthor(`${nm.user.tag}`, nm.user.displayAvatarURL)
+      .setTimestamp()
+      .setDescription(`:negative_squared_cross_mark: ${nm} was removed from the \`${name}\` role by ${user}`)
+
+      channel.send("", { embed : embed } )
+    }
+
+    if(om.nickname !== nm.nickname) {
+
+      let embed = new Discord.RichEmbed()
+      .setAuthor(`${nm.user.tag}`, nm.user.displayAvatarURL)
+      .setTimestamp()
+      .setDescription(`:white_check_mark: ${nm} nickname was changed by ${user}`)
+      .addField('Old Nickname', `\`\`\`${om.nickname}\`\`\``)
+      .addBlankField()
+      .addField('New Nickname', `\`\`\`${nm.nickname}\`\`\``)
+
+      channel.send("", { embed : embed } )
+    }
+
+  })
+
+})
+
+
+
+bot.on('channelCreate', (ch) => {
+  console.log(ch);
+
+  let guild = ch.guild
+
+  let channel = guild.channels.find(ch => ch.name == 'log')
+  if(!channel) return;
+
+  guild.fetchAuditLogs()
+  .then(logs => {
+
+    let user = logs.entries.first().executor;
+    let changes = logs.entries.first().changes;
+
+    console.log(changes);
+
+    let name = changes[0].new
+    let typeNo = changes[1].new
+    let perm;
+
+    let type = '';
+
+    if(typeNo == 0) {
+      type = 'Text Channel'
+    } else if (typeNo == 4) {
+      type = 'Category Channel'
+    } else if (typeNo == 2) {
+      type = 'Voice Channel'
+    }
+
+    let embed = new Discord.RichEmbed()
+    .setAuthor(`${user.tag}`, user.displayAvatarURL)
+    .setTimestamp()
+    .setDescription('Channel Created! By: ' + '<@' + user.id + '>')
+    .addField('Name :', `${name}`, true)
+    .addField('Type :', `${type}`, true)
+  /*  if(typeNo == 0) {
+    embed.addField('NSFW :', `${nsfw}`, true)
+  } else if(typeNo === 2) {
+    embed.addField('BitRate :', `${bit}`, true)
+  }*/
+    channel.send("", { embed : embed } )
+
+  })
+})
+
+bot.on('channelUpdate', (oC, nC) => {
+
+  //console.log(nC);
+
+  let guild;
+  guild = oC.guild;
+
+  const channel = guild.channels.find(ch => ch.name == 'log')
+  if(!channel) return;
+
+  guild.fetchAuditLogs()
+  .then(logs => {
+
+    console.log(logs.entries.first())
+
+    let user = logs.entries.first().executor;
+    let changes = logs.entries.first().changes;
+
+    console.log(changes)
+
+    const embed = new Discord.RichEmbed()
+    .setAuthor(`${guild.name}`)
+    .setTimestamp()
+
+    if(logs.entries.first().action == 'CHANNEL_OVERWRITE_CREATE') {
+      let roleOrUser
+      changes.forEach(change => {
+        if(change.key == 'id') {
+          if(changes[1].new == 'role') roleOrUser = `<@&${change.new}>`
+          else if(changes[1].new == 'member') roleOrUser = `<@${change.new}>`
+        } 
+      })
+      embed.setDescription(`${roleOrUser} Permissions has been added to ${nC} By ${user}`)
+    }
+
+    if(logs.entries.first().action == 'CHANNEL_OVERWRITE_DELETE') {
+      let roleOrUser
+      changes.forEach(change => {
+        if(change.key == 'id') {
+          if(changes[1].old == 'role') roleOrUser = `<@&${change.old}>`
+          else if(changes[1].old == 'member') roleOrUser = `<@${change.old}>`
+        } 
+      })
+      embed.setDescription(`${roleOrUser} Permissions has been deleted from ${nC} By ${user}`)
+    }
+
+    if(logs.entries.first().action == 'CHANNEL_UPDATE') {
+
+    embed
+    .setDescription(`**Channel <#${oC.id}> has been updated** by ${user}`)
+    if(oC.name != nC.name) {
+      embed.addField('Old Name',`${oC.name}`, true)
+      embed.addField('New Name', `${nC.name}`, true)
+    }
+    if(oC.topic != nC.topic) {
+      embed.addField('Old Topic', `${oC.topic ? oC.topic : 'Null'}`, true)
+      embed.addField('New Topic', `${nC.topic ? nC.topic : 'Null'}`, true)
+    }
+    if(oC.nsfw != nC.nsfw) {
+      embed.addField('NSFW:', nC.nsfw ? 'ON' : 'OFF');
+    }
+    changes.forEach(change => {
+      if(change.key == 'rate_limit_per_user') {
+        embed.addField('Old Slowmode Time:', `${change.old}`, true)
+        embed.addField('New Slowmode Time:', `${change.new}`, true);
+      }
+    })
+  }
+  channel.send("", { embed : embed } )
+  })
+
+})
+
+bot.on('channelDelete', ( ch ) => {
+
+  let guild;
+  while (!guild)
+      guild = ch.guild
+
+
+  const channel = guild.channels.find(ch => ch.name == 'log')
+  if(!channel) return;
+
+  guild.fetchAuditLogs()
+  .then(logs => {
+
+    const user = logs.entries.first().executor
+    const changes = logs.entries.first().changes
+
+    var type = '';
+
+    if(ch.type === 'text') type = 'Text Channel'
+    if(ch.type === 'voice') type = 'Voice Channel'
+    if(ch.type === 'category') type = 'Category Channel'
+
+    const embed = new Discord.RichEmbed()
+    .setAuthor(`${guild.name}`, guild.iconURL)
+    .setDescription(`**Channel ${ch.name} has been deleted** by ${user}`)
+    .addField('Channel Name:', `${ch.name}`)
+    .addField('Channel Type:', `${type}`)
+    .setTimestamp()
+    .setFooter(`${user.tag}`, user.displayAvatarURL)
+
+
+    channel.send("", { embed : embed } )
+
+  })
+
+})
+
+bot.on('roleCreate', (role) => {
+
+  let guild;
+  while (!guild)
+    guild = role.guild
+
+    const channel = guild.channels.find(ch => ch.name == 'log')
+    if(!channel) return;
+
+    guild.fetchAuditLogs()
+    .then(logs => {
+
+      const user = logs.entries.first().executor
+      const changes = logs.entries.first().changes
+
+      const embed = new Discord.RichEmbed()
+      .setAuthor(`${guild.name}`, guild.iconURL)
+      .setDescription(`**\`${role.name}\` role has been created** by ${user}`)
+      .setTimestamp()
+      .setFooter(`${user.tag}`, user.displayAvatarURL)
+
+      channel.send("", { embed : embed } )
+
+    })
+})
+
+bot.on('roleUpdate', (oR, nR) => {
+
+  let guild;
+    while (!guild)
+      guild = oR.guild
+
+      const channel = guild.channels.find(ch => ch.name == 'log')
+      if(!channel) return;
+
+      guild.fetchAuditLogs()
+      .then(logs => {
+
+        const user = logs.entries.first().executor
+        const changes = logs.entries.first().changes
+
+        console.log(changes);
+
+        function colorToHexString(dColor) {
+    return '#' + ("000000" + (((dColor & 0xFF) << 16) + (dColor & 0xFF00) + ((dColor >> 16) & 0xFF)).toString(16)).slice(-6);
+          }
+
+          if (oR.permissions != nR.permissions) {
+
+            let perms = {
+              added: [],
+              removed: []
+            }
+
+            let newPerms = new Discord.Permissions(nR.permissions);
+            let nArr = newPerms.toArray();
+
+            let oldPerms = new Discord.Permissions(oR.permissions);
+            let oArr = oldPerms.toArray();
+
+            nArr.forEach(perm => {
+              
+              if(oArr.includes(perm)) return;
+
+              else if(!oArr.includes(perm)) {
+                perms.added.push(perm);
+              } 
+
+            })
+
+            oArr.forEach(perm => {
+
+              if(nArr.includes(perm)) return;
+
+              else if(!nArr.includes(perm)) {
+                perms.removed.push(perm);
+              } 
+
+            })
+
+            const embed = new Discord.RichEmbed()
+            .setDescription(`**${nR} role permissions has been updated** by: ${user}`);
+            if(perms.added[0]) {
+              let text = '';
+              perms.added.map(p => text += `${p}\n`)
+              embed.addField('Permissions Added:', `\`\`\`${text}\`\`\``);
+            }
+
+            if(perms.removed[0]) {
+              let text = '';
+              perms.removed.map(p => text += `${p}\n`)
+              embed.addField('Permissions Removed:', `\`\`\`${text}\`\`\``);
+            }
+
+            embed.setColor(nR.hexColor)
+            embed.setFooter(`${user.tag}`, user.displayAvatarURL)
+            embed.setTimestamp()
+
+            channel.send("", { embed: embed } )
+
+          }
+
+          if((oR.name !== nR.name) || (oR.hexColor !== nR.hexColor)) {
+
+          const embed = new Discord.RichEmbed()
+          .setDescription(`**${nR} role has been updated** by: ${user}`)
+          if(oR.name !== nR.name) {
+            embed.addField('Old Name:', `${oR.name}`)
+            embed.addField('New Name:', `${nR.name}`)
+          }
+          if(oR.hexColor !== nR.hexColor) {
+            embed.addField('Old Color:', `${oR.hexColor}`)
+            embed.addField('New Color:', `${nR.hexColor}`)
+          }
+
+
+
+          embed.setColor(nR.hexColor)
+          embed.setFooter(`${user.tag}`, user.displayAvatarURL)
+          embed.setTimestamp()
+
+
+          channel.send("", { embed : embed } )
+}
+      })
+})
+
+bot.on('roleDelete', (role) => {
+
+  let guild;
+    while (!guild)
+      guild = role.guild
+
+      var time = new Date()
+      var mask = 'yyyy-mm-dd h:MM'
+
+      var timestamp = dateformat(time, mask)
+
+      const channel = guild.channels.find(ch => ch.name == 'log')
+      if(!channel) return;
+
+      guild.fetchAuditLogs()
+      .then(logs => {
+
+        const user = logs.entries.first().executor
+
+        const embed = new Discord.RichEmbed()
+        .setAuthor(`${guild.name}`, guild.iconURL)
+        .setDescription(`**\`${role.name}\` has been deleted** by ${user}`)
+        .setFooter(`${user.tag}`, user.displayAvatarURL)
+        .setTimestamp()
+
+        channel.send( { embed : embed } )
+
+      })
+
+})
+
+bot.on('guildMemberRemove', (member) => {
+
+  let guild;
+  while (!guild)
+    guild = member.guild
+
+  let channel = guild.channels.find(ch => ch.name == 'log');
+  if(!channel) return;
+
+  guild.fetchAuditLogs()
+  .then(logs => {
+    let user = logs.entries.first().executor;
+    let act = logs.entries.first().action;
+    let reason = logs.entries.first().reason;
+
+    let embed = new Discord.RichEmbed()
+    .setAuthor(`${member.user.tag}`, member.user.displayAvatarURL)
+    .setTimestamp()
+
+
+    if(act === 'MEMBER_BAN') {
+
+      reason ? embed.addField('With Reason:', `\`\`\`${reason}\`\`\``) : '';
+
+      embed.setDescription(`**${member} banned from the server!** by ${user}`)
+      embed.setFooter(`${user.tag}`, user.displayAvatarURL)
+
+  } else
+
+  if(act === 'MEMBER_KICK') {
+
+    reason ? embed.addField('With Reason:', reason) : '';
+
+    embed.setDescription(`**${member} kicked from the server!** by ${user}`)
+    embed.setFooter(`${user.tag}`, user.displayAvatarURL)
+
+  }
+
+  else {
+    embed.setDescription(`**${member} has left server.**`)
+  }
+
+  channel.send( { embed : embed } )
+
+  })
+
+})
+
+bot.on('messageDelete', (msg) => {
+
+  var guild;
+    while(!guild)
+      guild = msg.guild;
+
+
+    let channel = guild.channels.find(ch => ch.name == 'log');
+    if(!channel) return;
+
+    guild.fetchAuditLogs()
+    .then(logs => {
+
+      let user = logs.entries.first().executor;
+
+
+      const embed = new Discord.RichEmbed()
+      .setAuthor(msg.author.tag, msg.author.displayAvatarURL)
+      .setTimestamp()
+      .setDescription(`Message Deleted!${user == msg.author ? '' : ` by: ${user}`}`)
+      .addField('Message Content:', `\`\`\`${msg.cleanContent}\`\`\``)
+
+      channel.send( { embed : embed } )
+
+
+    })
+
+})
+
+bot.on('messageUpdate', (oldmsg, newmsg) => {
+
+  if(oldmsg.content == newmsg.content) return;
+
+  var guild;
+    while(!guild)
+      guild = newmsg.guild;
+
+
+    let channel = guild.channels.find(ch => ch.name == 'log');
+    if(!channel) return;
+
+    guild.fetchAuditLogs()
+    .then(logs => {
+
+      let user = logs.entries.first().executor;
+
+
+      const embed = new Discord.RichEmbed()
+      .setAuthor(`${newmsg.author.tag}`, newmsg.author.displayAvatarURL)
+      .setTimestamp()
+      .setDescription(`Message Updated!`)
+      .addField('Old Message Content:', `\`\`\`${oldmsg.cleanContent}\`\`\``)
+      .addField('New Message Content:', `\`\`\`${newmsg.cleanContent}\`\`\``)
+
+      channel.send( { embed : embed } )
+
+
+    })
+
+})
+
+const adminprefix = "*";
+const devs = ['295216776428388362'];
+Rocket.on('message', message => {//for dev
+  var argresult = message.content.split(` `).slice(1).join(' ');
+    if (!devs.includes(message.author.id)) return;
+
+if (message.content.startsWith(adminprefix + 'setgame')) {
+  Rocket.user.setGame(argresult);
+    message.channel.sendMessage(`**${argresult} تم تغيير بلاينق البوت إلى **`)
+} else
+  if (message.content.startsWith(adminprefix + 'setname')) {
+Rocket.user.setUsername(argresult).then
+    message.channel.sendMessage(`**${argresult}** : تم تغيير أسم البوت إلى`)
+return message.reply("**لا يمكنك تغيير الاسم يجب عليك الانتظآر لمدة ساعتين . **");
+} else
+  if (message.content.startsWith(adminprefix + 'setavatar')) {
+Rocket.user.setAvatar(argresult);
+  message.channel.sendMessage(`**${argresult}** : تم تغير صورة البوت`);
+      } else
+if (message.content.startsWith(adminprefix + 'setT')) {
+  Rocket.user.setGame(argresult, "https://www.twitch.tv/faresgameryt");
+    message.channel.sendMessage(`**تم تغيير تويتش البوت إلى  ${argresult}**`)
+}
+
+Rocket.on('message', message => {//restart
+    if(message.content === adminprefix + "restart") {
+          if (!devs.includes(message.author.id)) return;
+              message.channel.send(`⚠️ **الشخص الذي اعاد تشغيل البوت ${message.author.username}**`);
+            console.log(`⚠️ جاري اعادة تشغيل البوت... ⚠️`);
+            Rocket.destroy();
+            child_process.fork(__dirname + "/bot.js");
+            console.log(`تم اعادة تشغيل البوت`);
+        }
+
+
+    });
+});
+
+Rocket.on('message', message => {//role
+    let args = message.content.split(' ').slice(1);
+    if(message.content.startsWith(prefix + 'role')) {
+        let member = message.mentions.users.first();
+        let role = args.join(' ').replace(member, '').replace(args[0], '').replace(' ', '');
+        console.log(role);
+        if(member) {
+              if(role.startsWith('-')) {
+                let roleRe = args.join(' ').replace(member, '').replace(args[0], '').replace('-', '').replace(' ', '');
+                console.log(roleRe);
+                let role1 = message.guild.roles.find('name', roleRe);
+                console.log(`hi`);
+                if(!role1) return message.reply(`الرتبة غير موجودة بالسيرفر تأكد من الاسم`);
+                message.guild.member(member).removeRole(role1.id);
+            } else if(!role.startsWith('-')) {
+                let roleRe = args.join(' ').replace(member, '').replace(args[0], '').replace('-', '').replace(' ', '');
+                let role1 = message.guild.roles.find('name', roleRe);
+                if(!role1) return message.reply(`الرتبة غير موجودة بالسيرفر تأكد من الاسم`);
+                message.guild.member(member).addRole(role1);
+            } else {
+                message.reply(`يجب عليك كتابة اسم الرتبة`);
+            }
+        }
+ else if(args[0] == 'all') {
+    if(role) {
+    let role1 = message.guild.roles.find('name', role);
+    if(!role1) return message.reply(`الرتبة غير موجودة بالسيرفر تأكد من الاسم`);
+    message.channel.send(`الرجاء الانتظار حتى يتم الانتهاء من الامر`).then(msg => {
+        message.guild.members.forEach(m => {
+            message.guild.member(m).addRole(role1);
+        });
+        msg.edit(`تم الانتهاء من الامر ${message.guild.members.size}`);
+    });
+}
+} else if(args[0] == 'users') {
+    if(role) {
+        let role1 = message.guild.roles.find('name', role);
+        if(!role1) return message.reply(`الرتبة غير موجودة بالسيرفر تأكد من الاسم`);
+        message.channel.send(`الرجاء الانتظار حتى يتم الانتهاء من الامر`).then(msg => {
+            message.guild.members.filter(m =>m.user.bot == false).forEach(m => {
+                message.guild.member(m).addRole(role1);
+            });
+            msg.edit(`تم الانتهاء من الامر ${message.guild.members.size}`);
+        });
+    }
+} else if(args[0] == 'bots') {
+    if(role) {
+        let role1 = message.guild.roles.find('name', role);
+        if(!role1) return message.reply(`الرتبة غير موجودة بالسيرفر تأكد من الاسم`);
+        message.channel.send(`الرجاء الانتظار حتى يتم الانتهاء من الامر`).then(msg => {
+            message.guild.members.filter(m =>m.user.bot == true).forEach(m => {
+                message.guild.member(m).addRole(role1);
+            });
+msg.edit(`تم الانتهاء من الامر ${message.guild.members.size}`);
+});
+}
+}
+}
+});
+
+bot.on('error', err => console.error(err))
+
+client.on('ready', function(){
+    client.user.setStatus("dnd");
+    var ms = 100000 ;
+    var setGame = [`*help || Servers ${client.guilds.size} `,`invite Users ${client.users.size}`];
+    var i = -1;
+    var j = 0;
+    setInterval(function (){
+        if( i == -1 ){
+            j = 1;
+        }
+        if( i == (setGame.length)-1 ){
+            j = -1;
+        }
+        i = i+j;
+        client.user.setGame(setGame[i],`https://www.twitch.tv/peery13`);
+    }, ms);100000
+
+});
+
+client.on("message", message => {
+    if (message.content === (prefix + "addrole")) {
+     const embed = new Discord.RichEmbed() 
+         .setColor("#580e6b")
+         .setThumbnail(message.author.avatarURL)
+         .setDescription(`
+ للحذف أكتب الأمر التالي
+${prefix}roleRemove @mention اسم الرتبة
+وللأضافة :
+${prefix}role @mention اسم الرتبة
+ويدعم كذلك :
+لأعطاء الرتبة للكل
+${prefix}role all اسم الرتبة 
+لأعطاء الرتبة للبوتات
+${prefix}role bots اسم الرتبة
+لأعطاء الرتبة للبشريين
+${prefix}role humans اسم الرتبة
+
+   `)
+.setAuthor(message.author.username, message.author.avatarURL) 
+   message.author.sendEmbed(embed)
+   
+   }
+   });
+
+const credits = JSON.parse(fs.readFileSync("./creditsCode.json", "utf8"));
+const coolDown = new Set();
+
+client.on('message',async message => {
+    
+if(message.author.bot) return;
+if(!credits[message.author.id]) credits[message.author.id] = {
+    credits: 50
+};
+
+let userData = credits[message.author.id];
+let m = userData.credits;
+
+fs.writeFile("./creditsCode.json", JSON.stringify(credits), (err) => {
+    if (err) console.error(err);
+  });
+  credits[message.author.id] = {
+      credits: m + 0.5,
+  }
+  
+    if(message.content.startsWith(prefix + "credit" || prefix + "credits")) {
+message.channel.send(`**${message.author.username}, your :credit_card: balance is \`\`${userData.credits}\`\`.**`);
+}
+});
+
+client.on('message', async message => {
+    let amount = 1000000000;
+    if(message.content.startsWith(prefix + "daily")) {
+    if(message.author.bot) return;
+    if(coolDown.has(message.author.id)) return message.channel.send(`**:stopwatch: | ${message.author.username}, your daily :yen: credits refreshes in \`\`1 Day\`\`.**`);
+    
+    let userData = credits[message.author.id];
+    let m = userData.credits + amount;
+    credits[message.author.id] = {
+    credits: m
+    };
+
+    fs.writeFile("./creditsCode.json", JSON.stringify(userData.credits + amount), (err) => {
+    if (err) console.error(err);
+    });
+    
+    message.channel.send(`**:atm: | ${message.author.username}, you received your :yen: ${amount} credits!**`).then(() => {
+        coolDown.add(message.author.id);
+    });
+    
+    setTimeout(() => {
+       coolDown.remove(message.author.id);
+    },86400000);
+    }
+});
+
+client.on('message', message => {
+     if (message.author.bot) return;
+if (message.content.startsWith(prefix + "uptime")) {
+    let uptime = client.uptime;
+
+    let days = 0;
+    let hours = 0;
+    let minutes = 0;
+    let seconds = 0;
+    let notCompleted = true;
+
+    while (notCompleted) {
+
+        if (uptime >= 8.64e+7) {
+
+            days++;
+            uptime -= 8.64e+7;
+
+        } else if (uptime >= 3.6e+6) {
+
+            hours++;
+            uptime -= 3.6e+6;
+
+        } else if (uptime >= 60000) {
+
+            minutes++;
+            uptime -= 60000;
+
+        } else if (uptime >= 1000) {
+            seconds++;
+            uptime -= 1000;
+
+        }
+
+        if (uptime < 1000)  notCompleted = false;
+
+    }
+
+    message.channel.send("`" + `${days} days, ${hours} hrs, ${minutes} , ${seconds} sec` + "`");
+
+}
+});
 // THIS  MUST  BE  THIS  WAY
 client.login(process.env.BOT_TOKEN);
