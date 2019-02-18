@@ -1620,87 +1620,6 @@ client.on('message', message => {//restart
     });
 });
 
-client.on('message', message => {//role
-    let args = message.content.split(' ').slice(1);
-    if(message.content.startsWith(prefix + 'role')) {
-        let member = message.mentions.users.first();
-        let role = args.join(' ').replace(member, '').replace(args[0], '').replace(' ', '');
-        console.log(role);
-        if(member) {
-              if(role.startsWith('-')) {
-                let roleRe = args.join(' ').replace(member, '').replace(args[0], '').replace('-', '').replace(' ', '');
-                console.log(roleRe);
-                let role1 = message.guild.roles.find('name', roleRe);
-                console.log(`hi`);
-                if(!role1) return message.reply(`الرتبة غير موجودة بالسيرفر تأكد من الاسم`);
-                message.guild.member(member).removeRole(role1.id);
-            } else if(!role.startsWith('-')) {
-                let roleRe = args.join(' ').replace(member, '').replace(args[0], '').replace('-', '').replace(' ', '');
-                let role1 = message.guild.roles.find('name', roleRe);
-                if(!role1) return message.reply(`الرتبة غير موجودة بالسيرفر تأكد من الاسم`);
-                message.guild.member(member).addRole(role1);
-            } else {
-                message.reply(`يجب عليك كتابة اسم الرتبة`);
-            }
-        }
- else if(args[0] == 'all') {
-    if(role) {
-    let role1 = message.guild.roles.find('name', role);
-    if(!role1) return message.reply(`الرتبة غير موجودة بالسيرفر تأكد من الاسم`);
-    message.channel.send(`الرجاء الانتظار حتى يتم الانتهاء من الامر`).then(msg => {
-        message.guild.members.forEach(m => {
-            message.guild.member(m).addRole(role1);
-        });
-        msg.edit(`تم الانتهاء من الامر ${message.guild.members.size}`);
-    });
-}
-} else if(args[0] == 'users') {
-    if(role) {
-        let role1 = message.guild.roles.find('name', role);
-        if(!role1) return message.reply(`الرتبة غير موجودة بالسيرفر تأكد من الاسم`);
-        message.channel.send(`الرجاء الانتظار حتى يتم الانتهاء من الامر`).then(msg => {
-            message.guild.members.filter(m =>m.user.bot == false).forEach(m => {
-                message.guild.member(m).addRole(role1);
-            });
-            msg.edit(`تم الانتهاء من الامر ${message.guild.members.size}`);
-        });
-    }
-} else if(args[0] == 'bots') {
-    if(role) {
-        let role1 = message.guild.roles.find('name', role);
-        if(!role1) return message.reply(`الرتبة غير موجودة بالسيرفر تأكد من الاسم`);
-        message.channel.send(`الرجاء الانتظار حتى يتم الانتهاء من الامر`).then(msg => {
-            message.guild.members.filter(m =>m.user.bot == true).forEach(m => {
-                message.guild.member(m).addRole(role1);
-            });
-msg.edit(`تم الانتهاء من الامر ${message.guild.members.size}`);
-});
-}
-}
-}
-});
-
-bot.on('error', err => console.error(err))
-
-client.on('ready', function(){
-    client.user.setStatus("dnd");
-    var ms = 100000 ;
-    var setGame = [`*help || Servers ${client.guilds.size} `,`invite Users ${client.users.size}`];
-    var i = -1;
-    var j = 0;
-    setInterval(function (){
-        if( i == -1 ){
-            j = 1;
-        }
-        if( i == (setGame.length)-1 ){
-            j = -1;
-        }
-        i = i+j;
-        client.user.setGame(setGame[i],`https://www.twitch.tv/peery13`);
-    }, ms);100000
-
-});
-
 client.on("message", message => {
     if (message.content === (prefix + "addrole")) {
      const embed = new Discord.RichEmbed() 
@@ -1725,57 +1644,6 @@ ${prefix}role humans اسم الرتبة
    
    }
    });
-
-const credits = JSON.parse(fs.readFileSync("./creditsCode.json", "utf8"));
-const coolDown = new Set();
-
-client.on('message',async message => {
-    
-if(message.author.bot) return;
-if(!credits[message.author.id]) credits[message.author.id] = {
-    credits: 0
-};
-
-let userData = credits[message.author.id];
-let m = userData.credits;
-
-fs.writeFile("./creditsCode.json", JSON.stringify(credits), (err) => {
-    if (err) console.error(err);
-  });
-  credits[message.author.id] = {
-      credits: m + 0.5,
-  }
-  
-    if(message.content.startsWith(prefix + "credit" || prefix + "credits")) {
-message.channel.send(`**${message.author.username}, your :credit_card: balance is \`\`${userData.credits}\`\`.**`);
-}
-});
-
-client.on('message', async message => {
-    let amount = 1000000000000;
-    if(message.content.startsWith(prefix + "daily")) {
-    if(message.author.bot) return;
-    if(coolDown.has(message.author.id)) return message.channel.send(`**:stopwatch: | ${message.author.username}, your daily :yen: credits refreshes in \`\`1 Day\`\`.**`);
-    
-    let userData = credits[message.author.id];
-    let m = userData.credits + amount;
-    credits[message.author.id] = {
-    credits: m
-    };
-
-    fs.writeFile("./creditsCode.json", JSON.stringify(userData.credits + amount), (err) => {
-    if (err) console.error(err);
-    });
-    
-    message.channel.send(`**:atm: | ${message.author.username}, you received your :yen: ${amount} credits!**`).then(() => {
-        coolDown.add(message.author.id);
-    });
-    
-    setTimeout(() => {
-       coolDown.remove(message.author.id);
-    },86400000);
-    }
-});
 
 client.on('message', message => {
      if (message.author.bot) return;
@@ -1818,6 +1686,53 @@ if (message.content.startsWith(prefix + "uptime")) {
     message.channel.send("`" + `${days} days, ${hours} hrs, ${minutes} , ${seconds} sec` + "`");
 
 }
+});
+
+client.on("message", message => {
+ 
+    var args = message.content.split(' ').slice(1);
+    var msg = message.content.toLowerCase();
+    if( !message.guild ) return;
+    if( !msg.startsWith( prefix + 'role' ) ) return;
+    if( msg.toLowerCase().startsWith( prefix + 'rerole' ) ){
+        if( !args[0] ) return message.reply( '**:x: يرجى وضع الشخص المراد سحب منه الرتبة**' );
+        if( !args[1] ) return message.reply( '**:x: يرجى وضع الرتبة المراد سحبها من الشخص**' );
+        var role = msg.split(' ').slice(2).join(" ").toLowerCase();
+        var role1 = message.guild.roles.filter( r=>r.name.toLowerCase().indexOf(role)>-1 ).first();
+        if( !role1 ) return message.reply( '**:x: يرجى وضع الرتبة المراد سحبها من الشخص**' );if( message.mentions.members.first() ){
+            message.mentions.members.first().removeRole( role1 );
+            return message.reply('**:white_check_mark: [ '+role1.name+' ] رتبة [ '+args[0]+' ] تم سحب من **');
+        }
+        if( args[0].toLowerCase() == "all" ){
+            message.guild.members.forEach(m=>m.removeRole( role1 ))
+            return  message.reply('**:white_check_mark: [ '+role1.name+' ] تم سحب من الكل رتبة**');
+        } else if( args[0].toLowerCase() == "bots" ){
+            message.guild.members.filter(m=>m.user.bot).forEach(m=>m.removeRole(role1))
+            return  message.reply('**:white_check_mark: [ '+role1.name+' ] تم سحب من البوتات رتبة**');
+        } else if( args[0].toLowerCase() == "humans" ){
+            message.guild.members.filter(m=>!m.user.bot).forEach(m=>m.removeRole(role1))
+            return  message.reply('**:white_check_mark: [ '+role1.name+' ] تم سحب من البشريين رتبة**');
+        }  
+    } else {
+        if( !args[0] ) return message.reply( '**:x: يرجى وضع الشخص المراد اعطائها الرتبة**' );
+        if( !args[1] ) return message.reply( '**:x: يرجى وضع الرتبة المراد اعطائها للشخص**' );
+        var role = msg.split(' ').slice(2).join(" ").toLowerCase();
+        var role1 = message.guild.roles.filter( r=>r.name.toLowerCase().indexOf(role)>-1 ).first();
+        if( !role1 ) return message.reply( '**:x: يرجى وضع الرتبة المراد اعطائها للشخص**' );if( message.mentions.members.first() ){
+            message.mentions.members.first().addRole( role1 );
+            return message.reply('**:white_check_mark: [ '+role1.name+' ] رتبة [ '+args[0]+' ] تم اعطاء **');
+        }
+        if( args[0].toLowerCase() == "all" ){
+            message.guild.members.forEach(m=>m.addRole( role1 ))
+            return  message.reply('**:white_check_mark: [ '+role1.name+' ] تم اعطاء الكل رتبة**');
+        } else if( args[0].toLowerCase() == "bots" ){
+            message.guild.members.filter(m=>m.user.bot).forEach(m=>m.addRole(role1))
+            return  message.reply('**:white_check_mark: [ '+role1.name+' ] تم اعطاء البوتات رتبة**');
+        } else if( args[0].toLowerCase() == "humans" ){
+            message.guild.members.filter(m=>!m.user.bot).forEach(m=>m.addRole(role1))
+            return  message.reply('**:white_check_mark: [ '+role1.name+' ] تم اعطاء البشريين رتبة**');
+        }
+    }
 });
 // THIS  MUST  BE  THIS  WAY
 client.login(process.env.BOT_TOKEN);
