@@ -19,12 +19,14 @@ client.on('message', message => { ///////// ALPHA  , Codes ///// Galal
     if (message.content.startsWith("*help")) { ///////// ALPHA  , Codes ///// Galal
 
 message.author.send(` 
+**
 ╭━━━┳╮╱╱╱╱╱╱╱╭━━╮╱╱╱╭╮
 ┃╭━╮┃┃╱╱╱╱╱╱╱┃╭╮┃╱╱╭╯╰╮
 ┃╰━╯┃┃╭╮╭┳━━╮┃╰╯╰┳━┻╮╭╯
 ┃╭━━┫┃┃┃┃┃━━┫┃╭━╮┃╭╮┃┃
 ┃┃╱╱┃╰┫╰╯┣━━┃┃╰━╯┃╰╯┃╰╮
 ╰╯╱╱╰━┻━━┻━━╯╰━━━┻━━┻━╯
+**
 
 **الاوامــر االعامه** :earth_africa:
 **
