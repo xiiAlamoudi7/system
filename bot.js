@@ -15,8 +15,14 @@ client.on('message', msg => {
   }
 });
 
+client.on('message', message => {//help
+     if (message.content === "p!help") {
+  message.channel.send('**تم الارسال لك في الخاص | :ballot_box_with_check:**')
+    }
+});
+
 client.on('message', message => { ///////// ALPHA  , Codes ///// Galal
-    if (message.content.startsWith("*help")) { ///////// ALPHA  , Codes ///// Galal
+    if (message.content.startsWith("p!help")) { ///////// ALPHA  , Codes ///// Galal
 
 message.author.send(` 
 **
@@ -57,6 +63,13 @@ ${prefix}vonline
 
 (لو تبي تسوي ويلكم مسج سوي روم بأسم welcome)
 (لتفعيل اللوق سوي روم بأسم log)
+
+**اوامر الالعاب** :video_game: 
+${prefix}speed : أسرع كتابه
+${prefix}soon. !
+${prefix}Soon. !
+${prefix}soon. !
+${prefix}mypoints نقاط الالعاب
 
 **الاوامــر أخري** :red_circle: 
 ${prefix}ping
@@ -1774,7 +1787,7 @@ setInterval(function(){})
 });
 const fkk = [
 	 {
-            "type": "`فكك كلمة الحياََََََة بدون الحركات`",
+            "type": "`فكك كلمة [الحياََََََة] بدون الحركات`",
         "answers": ["الحياة"]
     },
 	];
@@ -1802,7 +1815,7 @@ msg.channel.send(embed).then(() => {
          const sh = new Discord.RichEmbed()
 .setColor("04791c")
 .setDescription('**? |Good Job +1P**')
-.addField('Type G.mypoints', 'To Show ur Points' , true)
+.addField('Type p!mypoints', 'To Show ur Points' , true)
 .setFooter(message.author.username, message.author.avatarURL)
 message.channel.sendEmbed(sh);
         let won = collected.first().author;
