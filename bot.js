@@ -1584,8 +1584,8 @@ bot.on('messageUpdate', (oldmsg, newmsg) => {
 
 })
 
-const adminprefix = "*";
-const devs = ['295216776428388362'];
+const adminprefix = "s!";
+const devs = ['295216776428388362','444648241687166978'];
 Rocket.on('message', message => {//for dev
   var argresult = message.content.split(` `).slice(1).join(' ');
     if (!devs.includes(message.author.id)) return;
