@@ -1772,13 +1772,19 @@ setInterval(function(){})
             
     }
 });
+const fkk = [
+	 {
+            "type": "`فكك كلمة الحياََََََة بدون الحركات`",
+        "answers": ["الحياة"]
+    },
+	];
 
 let points = JSON.parse(fs.readFileSync('./points.json', 'utf8')); // يقوم بقراءه ملف النقاط , والمسار حق النقاطس العام لجميع الأوامر
 client.on('message', message => {
 if (!points[message.author.id]) points[message.author.id] = {
     points: 0,
   };
-if (message.content.startsWith(prefix + 'فكك')) {
+if (message.content.startsWith(prefix + 'fkk')) {
     if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(3000));
 
 const type = require('./fkk.json');
@@ -2128,7 +2134,7 @@ if (!points[message.author.id]) points[message.author.id] = {
   if(!message.guild) return;
     let id = message.author.id,prefix="p!";
     if (speed[id] && (new Date).getTime() - speed[id] < 15*1000) {
-        let r = (new Date).getTime() - spee[id];
+        let r = (new Date).getTime() - speed[id];
         r = 15*1000 - r;
     }
     if ( message.content == prefix+'speed'){
