@@ -68,10 +68,10 @@ ${prefix}vonline
 
 **اوامر الالعاب** :video_game: 
 ${prefix}speed : أسرع كتابه
-${prefix}soon. !
-${prefix}Soon. !
-${prefix}soon. !
+${prefix}3wasem عواصم
 ${prefix}mypoints نقاط الالعاب
+Soon. !
+soon. !
 
 **الاوامــر أخري** :red_circle: 
 ${prefix}ping
@@ -1297,7 +1297,7 @@ setInterval(function(){})
 });
 const fkk = [
 	 {
-            "type": "`فكك كلمة [الحياََََََة] بدون الحركات`",
+            "type": "`فكك كلمة [الـحـيــاة] بدون الحركات`",
         "answers": ["الحياة"]
     },
 	];
@@ -1690,7 +1690,7 @@ msg.channel.send(embed).then(() => {
                   const sh = new Discord.RichEmbed()
   .setColor("04791c")
 .setDescription('**? |Good Job +1P**')
-.addField('Type G.mypoints', 'To Show ur Points' , true)
+.addField('Type p!mypoints', 'To Show ur Points' , true)
 .setFooter(message.author.username, message.author.avatarURL)
 message.channel.sendEmbed(sh);
             let won = collected.first().author; // في هذا السطر يقوم الكود بسحب الأي دي الذي قام بالأجابة اولاً
@@ -1837,7 +1837,7 @@ if (!points[message.author.id]) points[message.author.id] = {
         r = 15*1000 - r;
     return;
     }
-    if ( message.content == prefix+'عواصم'){
+    if ( message.content == prefix+'3wasem'){
        
         try{
 }catch(e){
@@ -1866,7 +1866,7 @@ msg.channel.send(embed).then(() => {
                   const sh = new Discord.RichEmbed()
 .setColor("04791c")
 .setDescription('**? |Good Job +1P**')
-.setFooter('G.mypoints')
+.setFooter('p!mypoints')
 message.channel.sendEmbed(sh);
             let won = collected.first().author; // في هذا السطر يقوم الكود بسحب الأي دي الذي قام بالأجابة اولاً
             points[won.id].points++;
