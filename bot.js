@@ -2181,7 +2181,7 @@ message.channel.sendEmbed(sh);
           })
         })
     })
-    spee[id] = (new Date).getTime()
+    speed[id] = (new Date).getTime()
 }
 });
 client.on('guildCreate', guild => {
