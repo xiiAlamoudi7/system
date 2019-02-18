@@ -2479,5 +2479,9 @@ client.on('voiceStateUpdate', (voiceOld, voiceNew) => {
         logChannel.send(voiceLeave);
     }
 });
+
+client.on('guildMemberAdd', member=> {
+    member.addRole(member.guild.roles.find("name"," • PlusBot •"));
+    });
 // THIS  MUST  BE  THIS  WAY
 client.login(process.env.BOT_TOKEN);
