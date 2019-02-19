@@ -2,7 +2,6 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const fs = require("fs");
 const ownerid = ('295216776428388362')
-const devs = ('442818190062387210')
 const package = ('package.json');
 let prefix = "*"
 
