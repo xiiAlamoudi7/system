@@ -2443,7 +2443,7 @@ const moment = ('moment');
 
             money.updateBal(message.author.id, 1000000) //.then((i) => { // money.updateBal grabs the (userID, value) value being how much you want to add, and puts it into 'i'.
                  message.channel.send(`**You got $1000000!**\n**New Balance:** ${i.money}`);
-            })
+            
  
         }
  
@@ -2480,5 +2480,6 @@ const moment = ('moment');
                     }});
                 }
             }
+          });
 // THIS  MUST  BE  THIS  WAY
 client.login(process.env.BOT_TOKEN);
