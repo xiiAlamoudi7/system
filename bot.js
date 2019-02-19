@@ -2423,7 +2423,6 @@ client.on('guildMemberAdd', member=> {
 
 const moment = ('moment');
 
-    const money = require('discord-money');
  
 
  
