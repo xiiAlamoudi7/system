@@ -3,6 +3,7 @@ const client = new Discord.Client();
 const fs = require("fs");
 const ownerid = ('295216776428388362')
 const package = ('package.json');
+const money = require('discord-money');
 let prefix = "*"
 
 
