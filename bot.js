@@ -343,7 +343,7 @@ client.on('message', message => {
 });
 
 client.on('message', message => {
-   if (message.content.startsWith("p!id")) {
+   if (message.content.startsWith("*id")) {
                 if(!message.channel.guild) return message.reply('** This command only for servers**');
 
                var mentionned = message.mentions.users.first();
