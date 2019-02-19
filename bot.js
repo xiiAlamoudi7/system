@@ -2434,7 +2434,7 @@ const moment = ('moment');
         // Example: Fetching Balance
         if (message.content.toUpperCase() === `${prefix}credits`) {
  
-            money.fetchBal(message.author.id).then((i) => { // money.fetchBal grabs the userID, finds it, and puts it into 'i'.
+            money.fetchBal(message.author.id).then((i) => {
                 message.channel.send(`**Balance:** ${i.money}`);
             })
  
@@ -2444,7 +2444,7 @@ const moment = ('moment');
         // Example: Adding Money To A User
         if (message.content.toUpperCase() === `${prefix}payyou`) {
 
-            money.updateBal(message.author.id, 1000000 /* Value *///) //.then((i) => { // money.updateBal grabs the (userID, value) value being how much you want to add, and puts it into 'i'.
+            money.updateBal(message.author.id, 1000000) //.then((i) => { // money.updateBal grabs the (userID, value) value being how much you want to add, and puts it into 'i'.
                  message.channel.send(`**You got $1000000!**\n**New Balance:** ${i.money}`);
             })
  
