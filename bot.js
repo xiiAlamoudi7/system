@@ -2,8 +2,9 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const fs = require("fs");
 const ownerid = ('295216776428388362')
+const devs = ('442818190062387210')
 const package = ('package.json');
-let prefix = "d!"
+let prefix = "*"
 
 
 
@@ -18,7 +19,7 @@ client.on('message', msg => {
 });
 
 client.on('message', message => {//help
-     if (message.content === "d!help") {
+     if (message.content === "*help") {
   message.channel.send('**تم الارسال لك في الخاص | :ballot_box_with_check:**')
     }
 });
@@ -48,6 +49,7 @@ ${prefix}invites
 ${prefix}inviteCodes
 ${prefix}count : عدد اعضاء السيرفر
 ${prefix}find : (اي حرق من الاسم الي تبيه)
+${prefix}bservers : bot servers :).
 
 **الاوامــر الاداريه** :closed_lock_with_key:
 ${prefix}mute @user
@@ -129,7 +131,7 @@ if(ra3d.content.startsWith(prefix + 'ccolors')) {
        });
 
 client.on('message', message => {
-    if (message.content.startsWith("p!bot")) {
+    if (message.content.startsWith("*bot")) {
     message.channel.send({
         embed: new Discord.RichEmbed()
             .setAuthor(client.user.username,client.user.avatarURL)
@@ -143,7 +145,7 @@ client.on('message', message => {
             .addField('``Users``' ,`[ ${client.users.size} ]` , true)
             .addField('``My Name``' , `[ ${client.user.tag} ]` , true)
             .addField('``My ID``' , `[ ${client.user.id} ]` , true)
-			      .addField('``My Prefix``' , `[ p! ]` , true)
+			      .addField('``My Prefix``' , `[ * ]` , true)
 			      .addField('``My Language``' , `[ Java Script ]` , true)
 			      .setFooter('By |  ! ZALABIA-♪ ,? ')
     })
@@ -561,7 +563,7 @@ client.on("guildMemberAdd", member => {
 client.on('guildCreate', guild => {
     var embed = new Discord.RichEmbed()
     .setColor(0x5500ff)
-    .setDescription(`**[p!~ [p!help] شكراً لك لإضافه البوت الى سيرفرك بريفكس البوت**`)
+    .setDescription(`**[*~ [*help] شكراً لك لإضافه البوت الى سيرفرك بريفكس البوت**`)
         guild.owner.send(embed)
   });
 
@@ -680,48 +682,6 @@ client.on('message', message => {
   }
 })
 
-client.on('guildMemberAdd', member => {
-
-    const channel = member.guild.channels.find('name', 'army');
-  
-    const millis = new Date().getTime() - member.user.createdAt.getTime();
-    const now = new Date();
-    const createdAt = millis / 1000 / 60 / 60 / 24;
-
-
-
-
-  
-    const embed = new Discord.RichEmbed()
-    
-    .setColor("black")
-    .setDescription(`**تاريخ دخولك للدسكورد منذ ${createdAt.toFixed(0)} يوم**`)
-    .setAuthor(member.user.tag, member.user.avatarURL);
-    channel.sendEmbed(embed);
-
-  
-});
-
-client.on('guildMemberAdd', member=> {
-    member.addRole(member.guild.roles.find("name","The Army"));
-    });
-
-const { Client } = require('discord.js');
-
-client.on('message', message => {
-    let args = message.content.split(' ').slice(1);
-
-    if(message.content.startsWith(prefix + 'dm')) {
-        let mnt = message.mentions.users.first();
-        if(!mnt) return message.reply('Please mention someone!');
-        mnt.send(args.join(' ').replace(mnt, '')).then(() => {
-            message.channel.send('Successfully sent the message!');
-        }).catch(() => {
-            message.channel.send('The user have dms disabled');
-        });
-    };
-})
-
 client.on("message", async message => {
             if(!message.channel.guild) return;
         if(message.content.startsWith(prefix + 'invites')) {
@@ -782,7 +742,7 @@ return;
 });
 
 client.on('message', message => {
-       if (message.content.startsWith(prefix + 'bserver')) {
+       if (message.content.startsWith(prefix + 'bservers')) {
      let msg =  client.guilds.map(guild => `**${guild.name}** عدد الاعضاء: ${guild.memberCount}`).join('\n');
   let embed = new Discord.RichEmbed()
   .setTitle(`${client.guilds.size}سيرفرات `)
@@ -1056,7 +1016,7 @@ client.on('message', message => {
  
 });
 
-const adminprefix = "*";
+const adminprefix = "d!";
 client.on('message', message => {//for dev
   var argresult = message.content.split(` `).slice(1).join(' ');
     if (!devs.includes(message.author.id)) return;
@@ -1092,31 +1052,6 @@ client.on('message', message => {//restart
 
     });
 });
-
-client.on("message", message => {
-    if (message.content === (prefix + "addrole")) {
-     const embed = new Discord.RichEmbed() 
-         .setColor("#580e6b")
-         .setThumbnail(message.author.avatarURL)
-         .setDescription(`
- للحذف أكتب الأمر التالي
-${prefix}roleRemove @mention اسم الرتبة
-وللأضافة :
-${prefix}role @mention اسم الرتبة
-ويدعم كذلك :
-لأعطاء الرتبة للكل
-${prefix}role all اسم الرتبة 
-لأعطاء الرتبة للبوتات
-${prefix}role bots اسم الرتبة
-لأعطاء الرتبة للبشريين
-${prefix}role humans اسم الرتبة
-
-   `)
-.setAuthor(message.author.username, message.author.avatarURL) 
-   message.author.sendEmbed(embed)
-   
-   }
-   });
 
 client.on('message', message => {
      if (message.author.bot) return;
@@ -1262,7 +1197,7 @@ if (command == "delete") {
 
 client.on('message', message => {
           let args = message.content.split(' ').slice(1);
-   if(message.content.split(' ')[0] == 'p!colors'){
+   if(message.content.split(' ')[0] == '*colors'){
            const embedd = new Discord.RichEmbed()
      .setFooter('Requested by '+message.author.username, message.author.avatarURL)
    .setDescription(`**There's No Color With This Number ** :x: `)
@@ -1692,7 +1627,7 @@ msg.channel.send(embed).then(() => {
                   const sh = new Discord.RichEmbed()
   .setColor("04791c")
 .setDescription('**? |Good Job +1P**')
-.addField('Type p!mypoints', 'To Show ur Points' , true)
+.addField('Type *mypoints', 'To Show ur Points' , true)
 .setFooter(message.author.username, message.author.avatarURL)
 message.channel.sendEmbed(sh);
             let won = collected.first().author; // في هذا السطر يقوم الكود بسحب الأي دي الذي قام بالأجابة اولاً
@@ -1868,7 +1803,7 @@ msg.channel.send(embed).then(() => {
                   const sh = new Discord.RichEmbed()
 .setColor("04791c")
 .setDescription('**? |Good Job +1P**')
-.setFooter('p!mypoints')
+.setFooter('*mypoints')
 message.channel.sendEmbed(sh);
             let won = collected.first().author; // في هذا السطر يقوم الكود بسحب الأي دي الذي قام بالأجابة اولاً
             points[won.id].points++;
@@ -2483,29 +2418,7 @@ client.on('voiceStateUpdate', (voiceOld, voiceNew) => {
 });
 
 client.on('guildMemberAdd', member=> {
-    member.addRole(member.guild.roles.find("name"," • PlusBot •"));
+    member.addRole(member.guild.roles.find("name",".DARK"));
     });
-
-client.on('guildMemberAdd', member => {
-
-    const channel = member.guild.channels.find('name', 'welcome');
-  
-    const millis = new Date().getTime() - member.user.createdAt.getTime();
-    const now = new Date();
-    const createdAt = millis / 1000 / 60 / 60 / 24;
-
-
-
-
-  
-    const embed = new Discord.RichEmbed()
-    
-    .setColor("black")
-    .setDescription(`**تاريخ دخولك للدسكورد منذ ${createdAt.toFixed(0)} يوم**`)
-    .setAuthor(member.user.tag, member.user.avatarURL);
-    channel.sendEmbed(embed);
-
-  
-});
 // THIS  MUST  BE  THIS  WAY
 client.login(process.env.BOT_TOKEN);
