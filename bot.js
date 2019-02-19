@@ -79,6 +79,8 @@ ${prefix}support
 ${prefix}invite
 ${prefix}say
 ${prefix}embed
+رابط سيرفر الدعم الفني للبوت
+https://discord.gg/eAhNCTS
 **
 `) ///////// ALPHA , Codes ///// Galal
 
