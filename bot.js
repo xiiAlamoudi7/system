@@ -1260,7 +1260,7 @@ if (command == "delete") {
 
 client.on('message', message => {
           let args = message.content.split(' ').slice(1);
-   if(message.content.split(' ')[0] == 'G.color'){
+   if(message.content.split(' ')[0] == 'p!colors'){
            const embedd = new Discord.RichEmbed()
      .setFooter('Requested by '+message.author.username, message.author.avatarURL)
    .setDescription(`**There's No Color With This Number ** :x: `)
@@ -1711,9 +1711,9 @@ client.on('guildCreate', guild => {
          const embed = new Discord.RichEmbed()
      .setColor("RED")
      .setTitle('Click Here To Add Bot .!')
-     .setURL('https://discordapp.com/oauth2/authorize?client_id=435392018693488641&scope=bot&permissions=2146958591')
+     .setURL('https://discordapp.com/oauth2/authorize?client_id=539560833097793584&permissions=8&scope=bot')
   .setDescription(`**
-  New Server Add ZeusSHOP Community © ?
+  New Server Add PlusBot
 اسم السيرفر: ${guild.name}
 صاحب السيرفر: ${guild.owner}**`);
 client.channels.get("543804415317114920").sendEmbed(embed)
@@ -1722,9 +1722,9 @@ client.on('guildDelete', guild => {
          const embed = new Discord.RichEmbed()
      .setColor("GOLD")
      .setTitle('Click Here To Add Bot .!')
-     .setURL('https://discordapp.com/oauth2/authorize?client_id=435392018693488641&scope=bot&permissions=2146958591')
+     .setURL('https://discordapp.com/oauth2/authorize?client_id=539560833097793584&permissions=8&scope=bot')
   .setDescription(`**
-  Server Kicked ZeusSHOP Community © :cry:
+  Server Kicked PlusBot :cry:
 اسم السيرفر: ${guild.name}
 صاحب السيرفر: ${guild.owner}**`);
 client.channels.get("543804415317114920").sendEmbed(embed)
