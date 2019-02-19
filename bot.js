@@ -3,7 +3,7 @@ const client = new Discord.Client();
 const fs = require("fs");
 const ownerid = ('295216776428388362')
 const package = ('package.json');
-let prefix = "p!"
+let prefix = "d!"
 
 
 
@@ -18,22 +18,22 @@ client.on('message', msg => {
 });
 
 client.on('message', message => {//help
-     if (message.content === "p!help") {
+     if (message.content === "d!help") {
   message.channel.send('**تم الارسال لك في الخاص | :ballot_box_with_check:**')
     }
 });
 
 client.on('message', message => { ///////// ALPHA  , Codes ///// Galal
-    if (message.content.startsWith("p!help")) { ///////// ALPHA  , Codes ///// Galal
+    if (message.content.startsWith("d!help")) { ///////// ALPHA  , Codes ///// Galal
 
 message.author.send(` 
 **
-╭━━━┳╮╱╱╱╱╱╱╱╭━━╮╱╱╱╭╮
-┃╭━╮┃┃╱╱╱╱╱╱╱┃╭╮┃╱╱╭╯╰╮
-┃╰━╯┃┃╭╮╭┳━━╮┃╰╯╰┳━┻╮╭╯
-┃╭━━┫┃┃┃┃┃━━┫┃╭━╮┃╭╮┃┃
-┃┃╱╱┃╰┫╰╯┣━━┃┃╰━╯┃╰╯┃╰╮
-╰╯╱╱╰━┻━━┻━━╯╰━━━┻━━┻━╯
+╭━━━╮╱╱╱╱╭╮╱╭━━╮╱╱╱╭╮
+╰╮╭╮┃╱╱╱╱┃┃╱┃╭╮┃╱╱╭╯╰╮
+╱┃┃┃┣━━┳━┫┃╭┫╰╯╰┳━┻╮╭╯
+╱┃┃┃┃╭╮┃╭┫╰╯┫╭━╮┃╭╮┃┃
+╭╯╰╯┃╭╮┃┃┃╭╮┫╰━╯┃╰╯┃╰╮
+╰━━━┻╯╰┻╯╰╯╰┻━━━┻━━┻━╯
 **
 
 **الاوامــر االعامه** :earth_africa:
