@@ -2424,10 +2424,8 @@ const moment = ('moment');
 
     const money = require('discord-money');
  
-    // Define client for Discord
 
  
-    // This runs when a message is recieved...
     client.on('message', message => {
  
      
@@ -2441,7 +2439,6 @@ const moment = ('moment');
  
         }
  
-        // Example: Adding Money To A User
         if (message.content.toUpperCase() === `${prefix}payyou`) {
 
             money.updateBal(message.author.id, 1000000) //.then((i) => { // money.updateBal grabs the (userID, value) value being how much you want to add, and puts it into 'i'.
@@ -2450,7 +2447,6 @@ const moment = ('moment');
  
         }
  
-        // Example: Removing Money From A User
         if (message.content.toUpperCase() === `${prefix}payfine`) {
  
             money.updateBal(message.author.id, -500).then((i) => { // Since the 'value' is -500, it will 'add' -500, making the bal $500 lower.
@@ -2459,7 +2455,6 @@ const moment = ('moment');
  
         }
  
-        // Example: Getting a daily reward
         if (message.content.toUpperCase() === prefix + `daily`) {
 
                 if (money[message.author.username + message.guild.name] != moment().format('L')) {
@@ -2485,8 +2480,5 @@ const moment = ('moment');
                     }});
                 }
             }
- 
- 
-    });
 // THIS  MUST  BE  THIS  WAY
 client.login(process.env.BOT_TOKEN);
