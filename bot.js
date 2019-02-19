@@ -2430,7 +2430,6 @@ const moment = ('moment');
     // This runs when a message is recieved...
     client.on('message', message => {
  
-        // Prefix
      
         // Example: Fetching Balance
         if (message.content.toUpperCase() === `${prefix}credits`) {
@@ -2445,8 +2444,8 @@ const moment = ('moment');
         // Example: Adding Money To A User
         if (message.content.toUpperCase() === `${prefix}payyou`) {
 
- //           money.updateBal(message.author.id, 1000000 /* Value *///) //.then((i) => { // money.updateBal grabs the (userID, value) value being how much you want to add, and puts it into 'i'.
-          /*       message.channel.send(`**You got $1000000!**\n**New Balance:** ${i.money}`);
+            money.updateBal(message.author.id, 1000000 /* Value *///) //.then((i) => { // money.updateBal grabs the (userID, value) value being how much you want to add, and puts it into 'i'.
+                 message.channel.send(`**You got $1000000!**\n**New Balance:** ${i.money}`);
             })
  
         }
