@@ -370,31 +370,31 @@ client.on('message', message => {
 
 
 client.on('message', message => {
-        if (message.content === "p!invite") {
+        if (message.content === "*invite") {
             if(!message.channel.guild) return;
         let embed = new Discord.RichEmbed()
         .setAuthor(` ${message.author.username} `, message.author.avatarURL)      
         .setTitle(`➡ Click Here `)
         .setURL(`https://discordapp.com/api/oauth2/authorize?client_id=539560833097793584&permissions=8&scope=bot`)
-        .setThumbnail(" https://cdn.discordapp.com/attachments/541262079169134594/541705205817802784/123456789.png")        
+        .setThumbnail(" https://cdn.discordapp.com/avatars/539560833097793584/3ccd8408af54a1b39f12d10aafe6fbba.png?size=2048")        
      message.channel.sendEmbed(embed);
        }
    });
    
    client.on('message', message => {
-        if (message.content === "p!invinte") {
+        if (message.content === "*invinte") {
             if(!message.channel.guild) return;
         let embed = new Discord.RichEmbed()
         .setAuthor(` ${message.author.username} `, message.author.avatarURL)      
         .setTitle(`➡ Click Here `)
         .setURL(`https://discordapp.com/oauth2/authorize?client_id=400489866573512705&permissions=8&scope=bot`)
-        .setThumbnail(" https://cdn.discordapp.com/avatars/377904849783750667/6c76e412f18c142dfd711d05fb363869.png?size=2048")        
+        .setThumbnail(" https://cdn.discordapp.com/avatars/539560833097793584/3ccd8408af54a1b39f12d10aafe6fbba.png?size=2048")        
      message.channel.sendEmbed(embed);
        }
    });
  
 client.on('message', message => {
-    if (message.content.startsWith("p!avatar")) {
+    if (message.content.startsWith("*avatar")) {
 if(!message.channel.guild) return;
         var mentionned = message.mentions.users.first();
     var client;
@@ -431,7 +431,7 @@ client.on('message', message => {
 
 
    client.on('message', message => {
-     if (message.content === "p!support") {
+     if (message.content === "*support") {
      let embed = new Discord.RichEmbed()
   .setAuthor(message.author.username)
   .setColor("#9B59B6")
@@ -464,7 +464,7 @@ omar.reply("✅ `Success Deleted All Roles - Ranks`")
 client.on('message',async message => {
     const moment = require('moment');
 const ms = require('ms')
-    var prefix = 'p!' //بريفكس البوت
+    var prefix = '*' //بريفكس البوت
   var time = moment().format('Do MMMM YYYY , hh:mm');
   var room;
   var title;
