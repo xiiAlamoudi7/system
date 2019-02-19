@@ -24,7 +24,7 @@ client.on('message', message => {//help
 });
 
 client.on('message', message => { ///////// ALPHA  , Codes ///// Galal
-    if (message.content.startsWith("d!help")) { ///////// ALPHA  , Codes ///// Galal
+    if (message.content.startsWith("*help")) { ///////// ALPHA  , Codes ///// Galal
 
 message.author.send(` 
 **
