@@ -136,7 +136,7 @@ client.on('message', message => {
             .setAuthor(client.user.username,client.user.avatarURL)
             .setThumbnail(client.user.avatarURL)
             .setColor('RANDOM')
-            .setTitle('``INFO PlusBot`` ')
+            .setTitle('``INFO DarkBot`` ')
             .addField('``My Ping``' , [`${Date.now() - message.createdTimestamp}` + 'MS'], true)
             .addField('``RAM Usage``', `[${(process.memoryUsage().rss / 1048576).toFixed()}MB]`, true)
             .addField('``servers``', [client.guilds.size], true)
@@ -1196,7 +1196,7 @@ if (command == "delete") {
 
 client.on('message', message => {
           let args = message.content.split(' ').slice(1);
-   if(message.content.split(' ')[0] == '*colors'){
+   if(message.content.split(' ')[0] == '*color'){
            const embedd = new Discord.RichEmbed()
      .setFooter('Requested by '+message.author.username, message.author.avatarURL)
    .setDescription(`**There's No Color With This Number ** :x: `)
@@ -1652,7 +1652,7 @@ client.on('guildCreate', guild => {
   New Server Add PlusBot
 اسم السيرفر: ${guild.name}
 صاحب السيرفر: ${guild.owner}**`);
-client.channels.get("543804415317114920").sendEmbed(embed)
+client.channels.get("543530103527964674").sendEmbed(embed)
 });
 client.on('guildDelete', guild => {
          const embed = new Discord.RichEmbed()
@@ -1663,7 +1663,7 @@ client.on('guildDelete', guild => {
   Server Kicked PlusBot :cry:
 اسم السيرفر: ${guild.name}
 صاحب السيرفر: ${guild.owner}**`);
-client.channels.get("543804415317114920").sendEmbed(embed)
+client.channels.get("543530103527964674").sendEmbed(embed)
 });
 
 var type = [
