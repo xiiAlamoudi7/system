@@ -1649,7 +1649,7 @@ client.on('guildCreate', guild => {
      .setTitle('Click Here To Add Bot .!')
      .setURL('https://discordapp.com/oauth2/authorize?client_id=539560833097793584&permissions=8&scope=bot')
   .setDescription(`**
-  New Server Add PlusBot
+  New Server Add DarkBot
 اسم السيرفر: ${guild.name}
 صاحب السيرفر: ${guild.owner}**`);
 client.channels.get("543530103527964674").sendEmbed(embed)
@@ -1660,7 +1660,7 @@ client.on('guildDelete', guild => {
      .setTitle('Click Here To Add Bot .!')
      .setURL('https://discordapp.com/oauth2/authorize?client_id=539560833097793584&permissions=8&scope=bot')
   .setDescription(`**
-  Server Kicked PlusBot :cry:
+  Server Kicked DarkBot :cry:
 اسم السيرفر: ${guild.name}
 صاحب السيرفر: ${guild.owner}**`);
 client.channels.get("543530103527964674").sendEmbed(embed)
