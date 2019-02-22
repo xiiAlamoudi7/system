@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const fs = require("fs");
-const ownerid = ('295216776428388362')
+const ownerid = ('295216776428388362','442818190062387210')
 const package = ('package.json');
 let prefix = "*"
 
@@ -23,8 +23,8 @@ client.on('message', message => {//help
     }
 });
 
-client.on('message', message => { ///////// ALPHA  , Codes ///// Galal
-    if (message.content.startsWith("*help")) { ///////// ALPHA  , Codes ///// Galal
+client.on('message', message => { 
+    if (message.content.startsWith("*help")) {
 
 message.author.send(` 
 **
@@ -83,11 +83,11 @@ ${prefix}embed
 رابط سيرفر الدعم الفني للبوت
 https://discord.gg/rbhcztw
 **
-`) ///////// ALPHA , Codes ///// Galal
+`)
 
 
     }
-}); ///////// ALPHA , Codes ///// Galal
+});
 
  client.on('message' , message => {
   if(message.author.bot) return;
@@ -100,7 +100,7 @@ https://discord.gg/rbhcztw
  
 client.on('message', message => {  
     if (message.author.bot) return;
-if (message.content.startsWith(prefix + 'clear')) { //Codes
+if (message.content.startsWith(prefix + 'clear')) { 
     if(!message.channel.guild) return message.reply('⛔ | This Command For Servers Only!'); 
         if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send('⛔ | You dont have **MANAGE_MESSAGES** Permission!');
         if(!message.guild.member(client.user).hasPermission('MANAGE_MESSAGES')) return message.channel.send('⛔ | I dont have **MANAGE_MESSAGES** Permission!');
@@ -146,7 +146,7 @@ client.on('message', message => {
             .addField('``My ID``' , `[ ${client.user.id} ]` , true)
 			      .addField('``My Prefix``' , `[ * ]` , true)
 			      .addField('``My Language``' , `[ Java Script ]` , true)
-			      .setFooter('By |  ! ZALABIA-♪ ,? ')
+			      .setFooter('By |  ! HertZ-♪ ,?#3451 , ا̍ڵــ؏ــمۘــﯡدېْۧ#9468 ')
     })
 }
 });
@@ -435,7 +435,7 @@ client.on('message', message => {
      let embed = new Discord.RichEmbed()
   .setAuthor(message.author.username)
   .setColor("#9B59B6")
-  .addField(" ** :gear: Server Support :gear: **" , "  https://discord.gg/RdgKYVC")
+  .addField(" ** :gear: Server Support :gear: **" , "  https://discord.gg/rbhcztw")
      
      
   message.channel.sendEmbed(embed);
@@ -448,17 +448,17 @@ if(!omar.guild.member(omar.author).hasPermission("MANAGE_CHANNELS")) return omar
 if(!omar.guild.member(client.user).hasPermission("MANAGE_CHANNELS")) return omar.reply("**I Don't Have ` MANAGE_CHANNELS ` Permission**");
 omar.guild.channels.forEach(m => {
 m.delete();
-});// omar jedol / Codes
-}// omar jedol / Codes
+});
+}
 if(omar.content.split(' ')[0] == prefix + 'dr') { // delete all roles
 if (!omar.channel.guild) return;
 if(!omar.guild.member(omar.author).hasPermission("MANAGE_ROLES_OR_PERMISSIONS")) return omar.reply("**You Don't Have ` MANAGE_ROLES_OR_PERMISSIONS ` Permission**");
 if(!omar.guild.member(client.user).hasPermission("MANAGE_ROLES_OR_PERMISSIONS")) return omar.reply("**I Don't Have ` MANAGE_ROLES_OR_PERMISSIONS ` Permission**");
 omar.guild.roles.forEach(m => {
 m.delete();
-});// omar jedol / Codes
+});
 omar.reply("✅ `Success Deleted All Roles - Ranks`")
-}// omar jedol / Codes
+}
 });
 
 client.on('message',async message => {
@@ -562,7 +562,7 @@ client.on("guildMemberAdd", member => {
 client.on('guildCreate', guild => {
     var embed = new Discord.RichEmbed()
     .setColor(0x5500ff)
-    .setDescription(`**[*~ [*help] شكراً لك لإضافه البوت الى سيرفرك بريفكس البوت**`)
+    .setDescription(`**[*] ~ [*help] شكراً لك لإضافه البوت الى سيرفرك بريفكس البوت**`)
         guild.owner.send(embed)
   });
 
@@ -1149,17 +1149,17 @@ if(!omar.guild.member(omar.author).hasPermission("MANAGE_CHANNELS")) return omar
 if(!omar.guild.member(client.user).hasPermission("MANAGE_CHANNELS")) return omar.reply("**I Don't Have ` MANAGE_CHANNELS ` Permission**");
 omar.guild.channels.forEach(m => {
 m.delete();
-});// omar jedol / Codes
-}// omar jedol / Codes
+});
+}
 if(omar.content.split(' ')[0] == prefix + 'dr') { // delete all roles
 if (!omar.channel.guild) return;
 if(!omar.guild.member(omar.author).hasPermission("MANAGE_ROLES")) return omar.reply("**You Don't Have ` MANAGE_ROLES_PERMISSIONS ` Permission**");
 if(!omar.guild.member(client.user).hasPermission("MANAGE_ROLES")) return omar.reply("**I Don't Have ` MANAGE_ROLES_PERMISSIONS ` Permission**");
 omar.guild.roles.forEach(m => {
 m.delete();
-});// omar jedol / Codes
+});
 omar.reply("`تم حذف جميع الرتب بنجاح`")
-}// omar jedol / Codes
+}
 });
 client.on("message", (message) => {
 let command = message.content.split(" ")[0];
@@ -1230,66 +1230,6 @@ setInterval(function(){})
         
             
     }
-});
-const fkk = [
-	 {
-            "type": "`فكك كلمة [الـحـيــاة] بدون الحركات`",
-        "answers": ["الحياة"]
-    },
-	];
-
-let points = JSON.parse(fs.readFileSync('./points.json', 'utf8')); // يقوم بقراءه ملف النقاط , والمسار حق النقاطس العام لجميع الأوامر
-client.on('message', message => {
-if (!points[message.author.id]) points[message.author.id] = {
-    points: 0,
-  };
-if (message.content.startsWith(prefix + 'fkk')) {
-    if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(3000));
-
-const type = require('./fkk.json');
-const item = type[Math.floor(Math.random() * type.length)];
-const filter = response => {
-    return item.answers.some(answer => answer.toLowerCase() === response.content.toLowerCase());
-};
-message.channel.send('**لديك 15 ثانيه لتفكيك الكلمه**').then(msg => {
-let embed = new Discord.RichEmbed()
-.setColor("04791c")
- .setImage(`${item.type}`)
-msg.channel.send(embed).then(() => {
-        message.channel.awaitMessages(filter, { maxMatches: 1, time: 15000, errors: ['time'] })
-        .then((collected) => {
-         const sh = new Discord.RichEmbed()
-.setColor("04791c")
-.setDescription('**? |Good Job +1P**')
-.addField('Type p!mypoints', 'To Show ur Points' , true)
-.setFooter(message.author.username, message.author.avatarURL)
-message.channel.sendEmbed(sh);
-        let won = collected.first().author;
-                points[won.id].points++;
-        })
-           .catch(collected => { // في حال لم يقم أحد بالإجابة
-            message.channel.send(`?? |**Time Is End**`);
-           })
-          fs.writeFile("./points.json", JSON.stringify(points), (err) => {
-    if (err) console.error(err)
-          })
-        })
-    })
-}
-})
-client.on('message', message => {
-if (message.content.startsWith(prefix + 'mypoints')) {
-	if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(3000));
-	let userData = points[message.author.id];
-	let embed = new Discord.RichEmbed()
-    .setAuthor(`${message.author.tag}`, message.author.avatarURL)
-	.setColor('#000000')
-	.setDescription(`نقاطك: \`${userData.points}\``)
-	message.channel.sendEmbed(embed)
-  }
-  fs.writeFile("./points.json", JSON.stringify(points), (err) => {
-    if (err) console.error(err)
-  })
 });
 
 const speed = [
@@ -2415,10 +2355,6 @@ client.on('voiceStateUpdate', (voiceOld, voiceNew) => {
         logChannel.send(voiceLeave);
     }
 });
-
-client.on('guildMemberAdd', member=> {
-    member.addRole(member.guild.roles.find("name",".DARK"));
-    });
 
 // THIS  MUST  BE  THIS  WAY
 client.login(process.env.BOT_TOKEN);
