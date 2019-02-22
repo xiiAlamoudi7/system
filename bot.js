@@ -67,13 +67,6 @@ ${prefix}vonline
 (لو تبي تسوي ويلكم مسج سوي روم بأسم welcome)
 (لتفعيل اللوق سوي روم بأسم log)
 
-**اوامر الالعاب** :video_game: 
-${prefix}speed : أسرع كتابه
-${prefix}3wasem عواصم
-${prefix}mypoints نقاط الالعاب
-Soon. !
-soon. !
-
 **الاوامــر أخري** :red_circle: 
 ${prefix}ping
 ${prefix}support
@@ -1531,7 +1524,7 @@ if (!points[message.author.id]) points[message.author.id] = {
     points: 0,
   };
   if(!message.guild) return;
-    let id = message.author.id,prefix="p!";
+    let id = message.author.id,prefix="*";
     if (speed[id] && (new Date).getTime() - speed[id] < 15*1000) {
         let r = (new Date).getTime() - speed[id];
         r = 15*1000 - r;
