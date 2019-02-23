@@ -69,7 +69,7 @@ ${prefix}say
 ${prefix}embed
 ${prefix}credits
 ${prefix}daily
-`**credits @user [amount]`
+${prefix}${prefix}credits @user [amount]
 رابط سيرفر الدعم الفني للبوت
 https://discord.gg/rbhcztw
 **
