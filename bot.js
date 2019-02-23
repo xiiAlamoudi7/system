@@ -642,24 +642,6 @@ EpicEdiTeD[message.author.id].Money+= 0.25;
  
 });
 
-let profile = {};
-      client.on('message', message => {
-          if(!profile[message.author.id]) profile[message.author.id] ={
-              points: 0,
-              level: 1
-          };
-          if(message.author.bot) return;
-          profile[message.author.id].points = Math.floor(profile[message.author.id].points+1);
-          if(profile[message.author.id].points > 100) {
-              profile[message.author.id].points = 0
-              profile[message.author.id].level = Math.floor(profile[message.author.id].level+1);
-              message.channel.send(`**${message.author.username}, You leveld up to __${profile[message.author.id].level}__**`)
-          }
-          fs.writeFile('profile.json', JSON.stringify(profile), (err) => {
-if (err) console.error(err);
-})
-      })
-
 client.on('message', message => {
   let args = message.content.split(" ")
   if (args[0].toLowerCase().startsWith(prefix+'roles')) {
@@ -1842,6 +1824,7 @@ client.on('voiceStateUpdate', (voiceOld, voiceNew) => {
     }
 });
 
+let profile = JSON.parse(fs.readFileSync("./profile.json", "utf8"))
 client.on("message", message => {
   if (message.author.bot) return;
  if(!message.channel.guild)return;
@@ -1891,12 +1874,12 @@ let cont = message.content.slice(prefix.length).split(" ");
 let args = cont.slice(2);
 let sender = message.author
 if(message.content.startsWith(prefix + '$credits')) {
-if (!args[0]) {message.channel.send(`**Usage: ${prefix}*credits @someone amount**`); 
+if (!args[0]) {message.channel.send(`**Usage: ${prefix}$credits @someone amount**`); 
          return;
            }
         // We should also make sure that args[0] is a number
         if (isNaN(args[0])) {
-            message.channel.send(`**Usage: ${prefix}*credits @someone number**`);
+            message.channel.send(`**Usage: ${prefix}$credits @someone number**`);
             return; // Remember to return if you are sending an error message! So the rest of the code doesn't run.
              }
              if(profile[message.author.id].credits < args[0]) return message.channel.send("**Your Credits is not enough  that**")
@@ -1904,7 +1887,7 @@ if(args[0].startsWith("-")) return  message.channel.send('**!! I Cant Do it**');
 				 let defineduser = '';
             let firstMentioned = message.mentions.users.first();
             defineduser = (firstMentioned)
-            if (!defineduser) return message.channel.send(`**Usage: ${prefix}*credits @someone number**`);
+            if (!defineduser) return message.channel.send(`**Usage: ${prefix}$credits @someone number**`);
             if(defineduser.id === message.author.id) return message.channel.send("***بجد والله ?!***")
             var mentionned = message.mentions.users.first();
 if (!profile[sender.id]) profile[sender.id] = {}
