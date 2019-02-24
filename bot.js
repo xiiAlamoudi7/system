@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const fs = require("fs");
+const moment = require("moment");
 const ownerid = ('295216776428388362','442818190062387210')
 const package = ('package.json');
 let prefix = "*"
@@ -1863,8 +1864,8 @@ if(message.content.startsWith(prefix + "daily")) {
 
   if(profile[message.author.id].lastDaily != moment().format('day')) {
    profile[message.author.id].lastDaily = moment().format('day')
-   profile[message.author.id].credits += 310
-    message.channel.send(`:atm: |**${message.author.username} you collect your \`310\` :yen: daily credits!**`)
+   profile[message.author.id].credits += 250
+    message.channel.send(`:atm: |**${message.author.username} you collect your \`250\` :yen: daily credits!**`)
 } else {
     message.channel.send(`**:stopwatch: | ${message.author.username}, your daily :yen: credits refreshes ${moment().endOf('day').fromNow()}**`)
 }
