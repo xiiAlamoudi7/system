@@ -1920,6 +1920,7 @@ mentionned.send(`:credit_card: | Transfer Receipt \`\`\`\`You have received ${ar
         })
     }       
 });
+
 client.on('guildMemberAdd', member => {
 
     const channel = member.guild.channels.find('name', 'welcome');
