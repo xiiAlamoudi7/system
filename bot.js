@@ -31,7 +31,7 @@ message.author.send(`
 ╰━━━┻╯╰┻╯╰╯╰┻━━━┻━━┻━╯
 **
 
-**الاوامــر االعامه** :earth_africa:
+**الاوامــر االعامه**
 **
 ${prefix}id : أمر ألايدي
 ${prefix}clear : بعدد او من غير عدد) لمسح الشات)
@@ -45,7 +45,7 @@ ${prefix}count : عدد اعضاء السيرفر
 ${prefix}find : (اي حرق من الاسم الي تبيه)
 ${prefix}bservers : bot servers :).
 
-**الاوامــر الاداريه** :closed_lock_with_key:
+**الاوامــر الاداريه**
 ${prefix}mute @user
 ${prefix}unmute @user
 ${prefix}ban @user (unban soon !)
@@ -61,7 +61,7 @@ ${prefix}dc [delete channels]
 (لو تبي تسوي ويلكم مسج سوي روم بأسم welcome)
 (لتفعيل اللوق سوي روم بأسم log)
 
-**الاوامــر أخري** :red_circle: 
+**الاوامــر أخري**
 ${prefix}ping
 ${prefix}support
 ${prefix}invite
@@ -69,6 +69,7 @@ ${prefix}say
 ${prefix}embed
 ${prefix}credits
 ${prefix}daily
+${prefix}credits @user [amount]
 رابط سيرفر الدعم الفني للبوت
 https://discord.gg/rbhcztw
 **
@@ -1890,7 +1891,7 @@ if(args[0].startsWith("-")) return  message.channel.send('**!! لا أسطتيع
             if(defineduser.id === message.author.id) return message.channel.send("***بجد والله ?!***")
             var mentionned = message.mentions.users.first();
 if (!profile[sender.id]) profile[sender.id] = {}
-if (!profile[sender.id].credits) profile[sender.id].credits = 310;
+if (!profile[sender.id].credits) profile[sender.id].credits = 300;
 fs.writeFile('./profile.json', JSON.stringify(profile), (err) => {
 if (err) console.error(err);
 })
@@ -1913,7 +1914,7 @@ var x2 = ['5587' ,' 9978' , '3785' , '7734' , '9864' , '7681' , '3758' , '7834' 
       profile[sender.id].credits += (-args[0]);
       let mariam = message.author.username
 message.channel.send(`**:moneybag: | ${message.author.username}, has transferrerd ` + "`" + args[0] + "$` to " + `<@${defineduser.id}>**`)
-mentionned.send(`:credit_card: | Transfer Receipt \`\`\`\`You have received ${args[0]} from user ${message.author.username} (ID: ${message.author.id})\`\`\`\``);
+mentionned.send(```:credit_card: | Transfer Receipt \`\`\`\`You have received ${args[0]} from user ${message.author.username} (ID: ${message.author.id})```);
                message.channel.sendEmbed(embed)
         })
         })
