@@ -1873,10 +1873,12 @@ let cont = message.content.slice(prefix.length).split(" ");
 let args = cont.slice(2);
 let sender = message.author
 if(message.content.startsWith(prefix + 'credits')) {
+if (!args[0]) {message.channel.send(''); 
          return;
            }
         // We should also make sure that args[0] is a number
         if (isNaN(args[0])) {
+            message.channel.send('');
             return; // Remember to return if you are sending an error message! So the rest of the code doesn't run.
              }
              if(profile[message.author.id].credits < args[0]) return message.channel.send("**ليس لديك كريديتس كافيه**")
@@ -1884,8 +1886,8 @@ if(args[0].startsWith("-")) return  message.channel.send('**!! لا أسطتيع
 				 let defineduser = '';
             let firstMentioned = message.mentions.users.first();
             defineduser = (firstMentioned)
-            if (!defineduser) return message.channel.send(`**Usage: ${prefix}trans @someone number**`);
-            if(defineduser.id === message.author.id) return message.channel.send("***بجد والله  ?!***")
+            if (!defineduser) return message.channel.send('');
+            if(defineduser.id === message.author.id) return message.channel.send("***بجد والله ?!***")
             var mentionned = message.mentions.users.first();
 if (!profile[sender.id]) profile[sender.id] = {}
 if (!profile[sender.id].credits) profile[sender.id].credits = 310;
@@ -1911,13 +1913,12 @@ var x2 = ['5587' ,' 9978' , '3785' , '7734' , '9864' , '7681' , '3758' , '7834' 
       profile[sender.id].credits += (-args[0]);
       let mariam = message.author.username
 message.channel.send(`**:moneybag: | ${message.author.username}, has transferrerd ` + "`" + args[0] + "$` to " + `<@${defineduser.id}>**`)
-mentionned.send(```:credit_card: | Transfer Receipt \`\`\`\`You have received ${args[0]} from user ${message.author.username} (ID: ${message.author.id})```);
+mentionned.send(`:credit_card: | Transfer Receipt \`\`\`\`You have received ${args[0]} from user ${message.author.username} (ID: ${message.author.id})\`\`\`\``);
                message.channel.sendEmbed(embed)
         })
         })
-})
+    }       
 });
-
 client.on('guildMemberAdd', member => {
 
     const channel = member.guild.channels.find('name', 'welcome');
