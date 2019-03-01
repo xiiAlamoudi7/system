@@ -39,13 +39,14 @@ ${prefix}bot : معلمومات عن البوت
 ${prefix}avatar : يعرض لك افاتارك
 ${prefix}rooms : عدد الرومات في السيرفر
 ${prefix}rank : عرض رانكك
-${prefix}invites
-${prefix}inviteCodes
+${prefix}invites : الانفايت حقتك
+${prefix}inviteCodes : كودات الروابط
 ${prefix}count : عدد اعضاء السيرفر
-${prefix}find : (اي حرق من الاسم الي تبيه)
-${prefix}bservers : bot servers :).
+${prefix}find : اي حرق من الاسم الي تبيه
+${prefix}bservers : السيرفرات الي البوت داخلها
 
 **الاوامــر الاداريه**
+**
 ${prefix}mute @user
 ${prefix}unmute @user
 ${prefix}ban @user (unban soon !)
@@ -57,19 +58,20 @@ ${prefix}schannel
 ${prefix}mvall
 ${prefix}mutechannel
 ${prefix}dc [delete channels]
-
-(لو تبي تسوي ويلكم مسج سوي روم بأسم welcome)
-(لتفعيل اللوق سوي روم بأسم log)
-
-**الاوامــر أخري**
-${prefix}ping
-${prefix}support
-${prefix}invite
-${prefix}say
-${prefix}embed
-${prefix}credits
-${prefix}daily
+**
+**ىوامــر أخري**
+**
+${prefix}ping : بنق البوت
+${prefix}support : سيرفر السبورت
+${prefix}invite : عشان تدخل البوت
+${prefix}say : عشان البوت يرسل رسالة
+${prefix}embed : نفس الي فوق بس رسالة احسن
+${prefix}credits : عشان تشوف الكرديت حقتك - @user [amount]
+${prefix}daily : هدية يومية
 ${prefix}credits @user [amount]
+
+[لو تبي تسوي ويلكم مسج سوي روم بأسم welcome]
+[لتفعيل اللوق سوي روم بأسم log]
 رابط سيرفر الدعم الفني للبوت
 https://discord.gg/rbhcztw
 **
